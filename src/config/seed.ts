@@ -1,6 +1,6 @@
-import { UserRole, type IUser } from "models/user";
+import { UserRole, type IUser } from "models/users/user";
 import { User } from "schemas/user";
-import passwordEncodeService from "services/passwordEncodeService";
+import passwordEncodeService from "services/auth/passwordEncodeService";
 
 const users: IUser[] = [
   {

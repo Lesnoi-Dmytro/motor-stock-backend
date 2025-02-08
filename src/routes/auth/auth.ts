@@ -1,5 +1,5 @@
+import authController from "controllers/authController";
 import { Router } from "express";
-import createHttpError from "http-errors";
 import validationMiddleware from "middleware/validationMiddleware";
 import { loginRequestSchema } from "validation/auth/loginValidationSchema";
 
@@ -22,7 +22,6 @@ const authRoute = Router();
  *       - application/json
  *     requestBody:
  *       requeired: true
- *       name: credentials
  *       content:
  *         application/json:
  *           schema:
@@ -40,7 +39,7 @@ const authRoute = Router();
  *                 example: password
  *     responses:
  *       '200':
- *         description: A successful response
+ *         description: Success response
  *         content:
  *           application/json:
  *             schema:
@@ -65,9 +64,44 @@ const authRoute = Router();
 authRoute.post(
   "/login",
   validationMiddleware(loginRequestSchema),
-  (req, res, next) => {
-    next(createHttpError(403, "Invalid credentials"));
-  }
+  authController.login
 );
+
+/**
+ * @swagger
+ * /api/auth/email/available:
+ *   post:
+ *     tags: [Auth]
+ *     summary: Email available
+ *     description: Check if user email is not already registered
+ *     consumes:
+ *       - application/json
+ *     requestBody:
+ *       requeired: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email
+ *                 required: true
+ *                 example: user@example.com
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 available:
+ *                   type: boolean
+ *                   description: Is email available
+ */
+authRoute.post("/email/available", (req, res) => {
+  authController.isEmailAvailable(req, res);
+});
 
 export default authRoute;

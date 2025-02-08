@@ -1,4 +1,4 @@
-import { type IUser, UserRole } from "models/user";
+import { type IUser, UserRole } from "models/users/user";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema<IUser>(
