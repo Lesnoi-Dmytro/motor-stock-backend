@@ -6,6 +6,7 @@ import authRoute from "routes/auth";
 import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
 import "./config/db";
+import "./config/seed";
 
 const app = express();
 const PORT = settings.port;
