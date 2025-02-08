@@ -1,5 +1,6 @@
 import { UserRole, type IUser } from "models/User";
-import { User } from "schemas/User";
+import { User } from "schemas/user";
+import passwordEncodeService from "services/passwordEncodeService";
 
 const users: IUser[] = [
   {
@@ -14,7 +15,10 @@ const users: IUser[] = [
 users.forEach(async (user) => {
   const existingUser = await User.findOne({ email: user.email });
   if (!existingUser) {
-    await User.create(user);
+    await User.create({
+      ...user,
+      password: await passwordEncodeService.encode(user.password),
+    });
     console.log(`User ${user.email} created`);
   } else {
     console.log(`User ${user.email} already exists`);
