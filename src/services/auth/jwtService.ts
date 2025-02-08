@@ -37,14 +37,32 @@ class JwtService {
         issuer: this.issuer,
       });
 
+      if (
+        typeof decodedToken === "string" ||
+        !this.isClaimsValid(decodedToken)
+      ) {
+        throw new Error("Invalid token");
+      }
+
       return decodedToken;
     } catch (error) {
+      console.log(error);
       if (error instanceof jwt.TokenExpiredError) {
         throw new Error("Token expired");
       } else {
         throw new Error("Invalid token");
       }
     }
+  }
+
+  private isClaimsValid(payload: jwt.JwtPayload) {
+    return (
+      payload.sub &&
+      payload.email &&
+      payload.firstName &&
+      payload.lastName &&
+      payload.role
+    );
   }
 }
 

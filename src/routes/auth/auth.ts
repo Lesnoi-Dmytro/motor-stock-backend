@@ -16,6 +16,7 @@ const authRoute = Router();
  * /api/auth/login:
  *   post:
  *     tags: [Auth]
+ *     security: []
  *     summary: Login
  *     description: Login user using email and password
  *     consumes:
@@ -72,6 +73,7 @@ authRoute.post(
  * /api/auth/email/available:
  *   post:
  *     tags: [Auth]
+ *     security: []
  *     summary: Email available
  *     description: Check if user email is not already registered
  *     consumes:
