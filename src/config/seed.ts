@@ -1,4 +1,4 @@
-import { UserRole, type IUser } from "models/User";
+import { UserRole, type IUser } from "models/user";
 import { User } from "schemas/user";
 import passwordEncodeService from "services/passwordEncodeService";
 

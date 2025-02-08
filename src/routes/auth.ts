@@ -1,4 +1,5 @@
 import { Router } from "express";
+import createHttpError from "http-errors";
 
 /**
  * @swagger
@@ -11,7 +12,7 @@ const authRoute = Router();
 /**
  * @swagger
  * /auth/login:
- *   get:
+ *   post:
  *     tags: [Auth]
  *     summary: Login
  *     description: Login user using email and password
@@ -56,8 +57,8 @@ const authRoute = Router();
  *               example:
  *                 message: Invalid credentials
  */
-authRoute.post("/login", (req, res) => {
-  res.send("Login");
+authRoute.post("/login", (req, res, next) => {
+  next(createHttpError(403, "Invalid credentials"));
 });
 
 export default authRoute;

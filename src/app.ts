@@ -7,6 +7,7 @@ import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
 import "./config/db";
 import "./config/seed";
+import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
 
 const app = express();
 const PORT = settings.port;
@@ -21,3 +22,5 @@ app.use(corsConfig);
 app.use("/auth", authRoute);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+app.use(errorHandlingMiddleware);
