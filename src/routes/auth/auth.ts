@@ -1,5 +1,7 @@
 import { Router } from "express";
 import createHttpError from "http-errors";
+import validationMiddleware from "middleware/validationMiddleware";
+import { loginRequestSchema } from "validation/auth/loginValidationSchema";
 
 /**
  * @swagger
@@ -11,28 +13,31 @@ const authRoute = Router();
 
 /**
  * @swagger
- * /auth/login:
+ * /api/auth/login:
  *   post:
  *     tags: [Auth]
  *     summary: Login
  *     description: Login user using email and password
  *     consumes:
  *       - application/json
- *     parameters:
- *       - in: body
- *         name: credentials
- *         description: User credentials
- *         schema:
- *           type: object
- *           required: true
- *           properties:
- *             email:
- *               type: string
- *               description: User email
- *             password:
- *               type: string
- *               description: User password
- *         required: true
+ *     requestBody:
+ *       requeired: true
+ *       name: credentials
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User email
+ *                 required: true
+ *                 example: user@example.com
+ *               password:
+ *                 type: string
+ *                 description: User password
+ *                 required: true
+ *                 example: password
  *     responses:
  *       '200':
  *         description: A successful response
@@ -57,8 +62,12 @@ const authRoute = Router();
  *               example:
  *                 message: Invalid credentials
  */
-authRoute.post("/login", (req, res, next) => {
-  next(createHttpError(403, "Invalid credentials"));
-});
+authRoute.post(
+  "/login",
+  validationMiddleware(loginRequestSchema),
+  (req, res, next) => {
+    next(createHttpError(403, "Invalid credentials"));
+  }
+);
 
 export default authRoute;

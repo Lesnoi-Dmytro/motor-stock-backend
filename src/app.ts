@@ -2,12 +2,12 @@ import express from "express";
 
 import { specs } from "config/swagger";
 import swaggerUi from "swagger-ui-express";
-import authRoute from "routes/auth";
 import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
 import "./config/db";
 import "./config/seed";
 import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
+import routes from "routes/routes";
 
 const app = express();
 const PORT = settings.port;
@@ -18,8 +18,9 @@ app.listen(PORT, () => {
 });
 
 app.use(corsConfig);
+app.use(express.json());
 
-app.use("/auth", authRoute);
+app.use("/api", routes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
