@@ -1,11 +1,18 @@
 import { Router } from "express";
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication
+ */
 const authRoute = Router();
 
 /**
  * @swagger
  * /auth/login:
  *   get:
+ *     tags: [Auth]
  *     summary: Login
  *     description: Login user using email and password
  *     consumes:
