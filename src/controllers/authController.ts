@@ -5,7 +5,7 @@ import authService from "services/auth/authService";
 import usersService from "services/users/usersService";
 
 class AuthController {
-  public async login(req: Request, res: Response, next: NextFunction) {
+  public async signIn(req: Request, res: Response, next: NextFunction) {
     const body: ILoginRequest = req.body;
 
     try {
