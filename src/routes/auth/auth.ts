@@ -13,7 +13,7 @@ const authRoute = Router();
 
 /**
  * @swagger
- * /api/auth/signin:
+ * /api/auth/sign_in:
  *   post:
  *     tags: [Auth]
  *     security: []
