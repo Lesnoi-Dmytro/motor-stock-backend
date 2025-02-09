@@ -19,8 +19,18 @@ const options = {
         url: settings.backend_url,
       },
     ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    security: [{ BearerAuth: [] }],
   },
-  apis: ["src/routes/*.ts"],
+  apis: ["src/routes/**/*.ts"],
 };
 
 export const specs = swaggerJsdoc(options);
