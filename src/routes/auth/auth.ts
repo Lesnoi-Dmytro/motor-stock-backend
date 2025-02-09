@@ -1,7 +1,7 @@
 import authController from "controllers/authController";
 import { Router } from "express";
 import validationMiddleware from "middleware/validationMiddleware";
-import { loginRequestSchema } from "validation/auth/loginValidationSchema";
+import { signInRequestSchema } from "validation/auth/signInValidationSchema";
 
 /**
  * @swagger
@@ -13,7 +13,7 @@ const authRoute = Router();
 
 /**
  * @swagger
- * /api/auth/login:
+ * /api/auth/signin:
  *   post:
  *     tags: [Auth]
  *     security: []
@@ -63,9 +63,9 @@ const authRoute = Router();
  *                 message: Invalid credentials
  */
 authRoute.post(
-  "/login",
-  validationMiddleware(loginRequestSchema),
-  authController.login
+  "/sign_in",
+  validationMiddleware(signInRequestSchema),
+  authController.signIn
 );
 
 /**
