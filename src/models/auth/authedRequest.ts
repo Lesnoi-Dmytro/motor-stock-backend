@@ -1,4 +1,5 @@
 import type { Request } from "express";
+import type { UserRole } from "models/users/user";
 
 export interface IAuthedRequest extends Request {
   user: {
@@ -6,6 +7,6 @@ export interface IAuthedRequest extends Request {
     email: string;
     firstName: string;
     lastName: string;
-    role: string;
+    role: UserRole;
   };
 }
