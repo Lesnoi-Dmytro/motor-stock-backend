@@ -2,6 +2,7 @@ import authController from "controllers/authController";
 import { Router } from "express";
 import validationMiddleware from "middleware/validationMiddleware";
 import { signInRequestSchema } from "validation/auth/signInValidationSchema";
+import { signInRequestSchema } from "validation/auth/signInValidationSchema";
 
 /**
  * @swagger
