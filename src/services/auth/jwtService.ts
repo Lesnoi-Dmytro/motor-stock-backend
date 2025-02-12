@@ -1,6 +1,6 @@
 import { settings } from "config/settings";
 import jwt from "jsonwebtoken";
-import type { IUser } from "models/users/user";
+import { UserRole, type IUser } from "models/users/User";
 
 class JwtService {
   private readonly jwtPrivateKey = settings.jwt_private_key;
@@ -14,7 +14,9 @@ class JwtService {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        color: user.color,
         role: user.role,
+        company: user.company,
       },
       this.jwtPrivateKey,
       {
@@ -61,7 +63,9 @@ class JwtService {
       payload.email &&
       payload.firstName &&
       payload.lastName &&
-      payload.role
+      payload.color &&
+      payload.payload.role &&
+      (payload.role !== UserRole.SUPPLIER || payload.company)
     );
   }
 }
