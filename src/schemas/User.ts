@@ -1,4 +1,4 @@
-import { type IUser, UserRole } from "models/users/user";
+import { type IUser, UserRole } from "models/users/User";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema<IUser>(
@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema<IUser>(
       type: String,
       required: true,
       unique: true,
+    },
+    color: {
+      type: String,
+      required: true,
     },
     password: {
       type: String,
