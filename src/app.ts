@@ -5,7 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
 import "./config/db";
-import "./seed/migrate";
+import "./migrations/migrate";
 import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
 import routes from "routes/routes";
 

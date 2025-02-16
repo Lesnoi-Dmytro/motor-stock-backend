@@ -1,5 +1,5 @@
-import { initUser } from "seed/migrations/1__init_user";
-import { updateUser } from "seed/migrations/2__update_user";
+import { initUser } from "migrations/migrations/1__init_user";
+import { updateUser } from "migrations/migrations/2__update_user";
 
 interface Migartion {
   id: number;

@@ -1,5 +1,5 @@
+import { migrations } from "migrations/migrations";
 import mongoose from "mongoose";
-import { migrations } from "seed/migrations";
 
 async function migrate() {
   const migationHistory = await Migration.find();
