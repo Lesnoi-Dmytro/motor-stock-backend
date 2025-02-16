@@ -6,12 +6,18 @@ const companySchema = new mongoose.Schema<ICompany>(
     name: {
       type: String,
       required: true,
-      unique: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    phoneNum: {
+      type: String,
+      required: true,
     },
   },
   {
     versionKey: false,
-    timestamps: true,
   }
 );
 

@@ -4,7 +4,7 @@ import usersService from "services/users/usersService";
 
 class AuthService {
   public async login(email: string, password: string): Promise<string> {
-    const user = await usersService.getUserByEmail(email);
+    const user = await usersService.getUserByEmail(email, true);
     if (
       !user ||
       !(await passwordEncodeService.compare(password, user.password))

@@ -1,5 +1,6 @@
 import { settings } from "config/settings";
 import jwt from "jsonwebtoken";
+import type { ICompany } from "models/companies/company";
 import { UserRole, type IUser } from "models/users/User";
 
 class JwtService {
@@ -16,7 +17,7 @@ class JwtService {
         lastName: user.lastName,
         color: user.color,
         role: user.role,
-        company: user.company?.name,
+        company: user.company ? (user.company as ICompany)?.name : undefined,
       },
       this.jwtPrivateKey,
       {

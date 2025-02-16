@@ -9,7 +9,7 @@ export interface IUser {
   color: UserColors;
   password: string;
   role: UserRole;
-  company?: ICompany;
+  company?: mongoose.Types.ObjectId | ICompany;
 }
 
 export enum UserRole {

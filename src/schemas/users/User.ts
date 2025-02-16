@@ -1,5 +1,6 @@
 import { type IUser, UserRole } from "models/users/User";
 import mongoose from "mongoose";
+import { Company } from "schemas/companies/Company";
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -31,7 +32,7 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Companies",
+      ref: Company.name,
     },
   },
   {

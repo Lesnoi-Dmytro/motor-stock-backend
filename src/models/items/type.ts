@@ -1,8 +1,6 @@
 import type mongoose from "mongoose";
 
-export interface ICompany {
+export interface IType {
   _id: mongoose.Types.ObjectId;
-  address: string;
   name: string;
-  phoneNum: string;
 }
