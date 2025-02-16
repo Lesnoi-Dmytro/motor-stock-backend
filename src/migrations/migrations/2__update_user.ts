@@ -1,5 +1,5 @@
 import { UserColors } from "models/users/User";
-import { User } from "schemas/User";
+import { User } from "schemas/users/User";
 
 export async function updateUser() {
   await User.findOneAndUpdate(

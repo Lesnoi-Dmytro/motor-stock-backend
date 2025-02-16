@@ -16,7 +16,7 @@ class JwtService {
         lastName: user.lastName,
         color: user.color,
         role: user.role,
-        company: user.company,
+        company: user.company?.name,
       },
       this.jwtPrivateKey,
       {

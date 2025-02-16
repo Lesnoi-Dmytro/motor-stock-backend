@@ -30,7 +30,8 @@ const userSchema = new mongoose.Schema<IUser>(
       default: UserRole.EMPLOYEE,
     },
     company: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Companies",
     },
   },
   {

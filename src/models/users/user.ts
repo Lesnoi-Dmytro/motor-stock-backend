@@ -1,3 +1,4 @@
+import type { ICompany } from "models/companies/company";
 import type mongoose from "mongoose";
 
 export interface IUser {
@@ -8,7 +9,7 @@ export interface IUser {
   color: UserColors;
   password: string;
   role: UserRole;
-  company?: string;
+  company?: ICompany;
 }
 
 export enum UserRole {
