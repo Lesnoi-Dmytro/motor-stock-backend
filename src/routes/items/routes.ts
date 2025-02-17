@@ -5,18 +5,18 @@ import { authedMiddleware } from "middleware/authedMiddleware";
 /**
  * @swagger
  * tags:
- *   name: Types
- *   description: Items types
+ *   name: Items
+ *   description: Stock Items
  */
-const typesRoute = Router();
-typesRoute.use(authedMiddleware());
+const itemsRoute = Router();
+itemsRoute.use(authedMiddleware());
 
 /**
  * @swagger
- * /api/types:
+ * /api/items/types:
  *   get:
- *     tags: [Types]
- *     summary: All types
+ *     tags: [Items]
+ *     summary: Types
  *     description: All item types
  *     responses:
  *       '200':
@@ -38,6 +38,6 @@ typesRoute.use(authedMiddleware());
  *                         type: string
  *                         example: Motor
  */
-typesRoute.get("/", typesController.getAllTypes);
+itemsRoute.get("/types", typesController.getAllTypes);
 
-export default typesRoute;
+export default itemsRoute;

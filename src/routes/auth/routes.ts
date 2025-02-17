@@ -48,7 +48,7 @@ const authRoute = Router();
  *               properties:
  *                 token:
  *                   type: string
- *                   description: JWT token
+ *                   example: jwt.token.payload
  *       '403':
  *         description: Invalid credentials
  *         content:
