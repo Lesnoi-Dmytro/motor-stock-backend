@@ -49,7 +49,6 @@ class JwtService {
 
       return decodedToken;
     } catch (error) {
-      console.log(error);
       if (error instanceof jwt.TokenExpiredError) {
         throw new Error("Token expired");
       } else {
@@ -65,7 +64,7 @@ class JwtService {
       payload.firstName &&
       payload.lastName &&
       payload.color &&
-      payload.payload.role &&
+      payload.role &&
       (payload.role !== UserRole.SUPPLIER || payload.company)
     );
   }

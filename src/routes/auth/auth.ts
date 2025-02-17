@@ -1,4 +1,4 @@
-import authController from "controllers/authController";
+import authController from "controllers/auth/authController";
 import { Router } from "express";
 import validationMiddleware from "middleware/validationMiddleware";
 import { signInRequestSchema } from "validation/auth/signInValidationSchema";
@@ -32,7 +32,7 @@ const authRoute = Router();
  *                 type: string
  *                 description: User email
  *                 required: true
- *                 example: user@example.com
+ *                 example: johndoe@example.com
  *               password:
  *                 type: string
  *                 description: User password

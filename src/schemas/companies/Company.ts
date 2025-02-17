@@ -13,6 +13,7 @@ const companySchema = new mongoose.Schema<ICompany>(
     },
     phoneNum: {
       type: String,
+      maxlength: 13,
       required: true,
     },
   },
