@@ -40,16 +40,14 @@ itemsRoute.use(authedMiddleware());
  *         example: 'Fuel'
  *       - in: query
  *         name: companies
- *         type: array
- *         items: string
+ *         type: string
  *         description: Company ids
- *         example: ['67b337fbd19581c05ed4171f', '67b337fbd19581c05ed41720']
+ *         example: '67b3bcb7afcacfc63f4417c7,67b3bcb7afcacfc63f4417c8'
  *       - in: query
  *         name: types
- *         type: array
- *         items: string
+ *         type: string
  *         description: Item types ids
- *         example: ['67b337fbd19581c05ed41729', '67b337fbd19581c05ed4172b']
+ *         example: '67b3bcccdba1d1ec070c5815,67b3bcccdba1d1ec070c5819'
  *     responses:
  *       '200':
  *         description: Success response
@@ -58,17 +56,72 @@ itemsRoute.use(authedMiddleware());
  *             schema:
  *               type: object
  *               properties:
- *                 types:
+ *                 items:
  *                   type: array
  *                   items:
  *                     type: object
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: 123abc
- *                       name:
- *                         type: string
- *                         example: Fuel Injector
+ *                         example: 123456abcdef
+ *                       item:
+ *                         type: object
+ *                         properties:
+ *                           _id:
+ *                             type: string
+ *                             example: 123456abcdef
+ *                           name:
+ *                             type: string
+ *                             example: Fuel Injector
+ *                           article:
+ *                             type: string
+ *                             example: FI-001
+ *                           descriptiom:
+ *                             type: string
+ *                             exapmle: High-performance fuel injector.
+ *                           type:
+ *                             type: string
+ *                             example: 123456abcdef
+ *                           createdAt:
+ *                             type: date
+ *                             example: 2025-01-01T00:00:00.000Z
+ *                           updatedAt:
+ *                             type: date
+ *                             example: 2025-01-01T00:00:00.000Z
+ *                       company:
+ *                         type: object
+ *                         properties:
+ *                           _id:
+ *                             type: string
+ *                             example: 123456abcdef
+ *                           name:
+ *                             type: string
+ *                             example: AutoParts Express
+ *                           address:
+ *                             type: string
+ *                             example: 1234 Industrial Rd, Detroit, MI
+ *                       quantity:
+ *                         type: number
+ *                         example: 10
+ *                       priceHistory:
+ *                         type: array
+ *                         items: object
+ *                         properties:
+ *                           price:
+ *                             type: number
+ *                             example: 100
+ *                           date:
+ *                             type: date
+ *                             example: 2025-01-01T00:00:00.000Z
+ *                       createdAt:
+ *                         type: date
+ *                         example: 2025-01-01T00:00:00.000Z
+ *                       updatedAt:
+ *                         type: date
+ *                         example: 2025-01-01T00:00:00.000Z
+ *                 totalItems:
+ *                   type: integer
+ *                   example: 24
  */
 itemsRoute.get(
   "/company-items",

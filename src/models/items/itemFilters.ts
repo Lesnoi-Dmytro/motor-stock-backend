@@ -1,6 +1,12 @@
-import type { PaginatedRequest } from "models/pagination";
+import type { Paginated, PaginatedRequest } from "models/pagination";
 
-export interface ItemFilters extends PaginatedRequest {
+export interface ItemFiltersRequest extends PaginatedRequest {
+  search?: string;
+  companies?: string;
+  types?: string;
+}
+
+export interface ItemFilters extends Paginated {
   search?: string;
   companies?: string[];
   types?: string[];

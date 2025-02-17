@@ -15,6 +15,10 @@ const companyItemSchema = new mongoose.Schema<ICompanyItem>(
       ref: Company.name,
       required: true,
     },
+    quantity: {
+      type: Number,
+      default: 0,
+    },
     priceHistory: {
       type: [
         {

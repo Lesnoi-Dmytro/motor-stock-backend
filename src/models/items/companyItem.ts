@@ -6,6 +6,7 @@ export interface ICompanyItem {
   _id: mongoose.Types.ObjectId;
   item: mongoose.Types.ObjectId | IItem;
   company: mongoose.Types.ObjectId | ICompany;
+  quantity: number;
   priceHistory: [
     {
       price: number;

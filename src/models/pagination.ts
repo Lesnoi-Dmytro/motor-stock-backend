@@ -1,9 +1,14 @@
 export interface PaginatedRequest {
-  page?: number;
-  pageSize?: number;
+  page?: string;
+  pageSize?: string;
+}
+
+export interface Paginated {
+  page: number;
+  pageSize: number;
 }
 
 export interface PaginationResponse<T> {
   items: T[];
-  totalPages: number;
+  totalItems: number;
 }
