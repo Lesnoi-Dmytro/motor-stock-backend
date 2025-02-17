@@ -1,6 +1,16 @@
 import { Type } from "schemas/items/type";
 
-export const types = [
+export async function initTypes() {
+  await Promise.all(
+    basicTypes.map((type) =>
+      new Type({
+        ...type,
+      }).save({ validateBeforeSave: false })
+    )
+  );
+}
+
+export const basicTypes = [
   {
     name: "Fuel Injector",
   },
@@ -17,13 +27,3 @@ export const types = [
     name: "Front Bumper Cover",
   },
 ];
-
-export async function initTypes() {
-  await Promise.all(
-    types.map((type) =>
-      new Type({
-        ...type,
-      }).save({ validateBeforeSave: false })
-    )
-  );
-}

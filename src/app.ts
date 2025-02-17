@@ -2,11 +2,12 @@ import express from "express";
 
 import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
-import "./config/db";
-import "./migrations/migrate";
 import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
 import routes from "routes/routes";
 import { swaggerDocs } from "config/swagger";
+
+import "./config/db";
+import "./migrations/migrate";
 
 const app = express();
 const PORT = settings.port;

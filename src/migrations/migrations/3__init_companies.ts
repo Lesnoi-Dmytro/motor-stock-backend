@@ -1,5 +1,15 @@
 import { Company } from "schemas/companies/company";
 
+export async function initCompanies() {
+  await Promise.all(
+    dummyCompanies.map((company) =>
+      new Company({
+        ...company,
+      }).save({ validateBeforeSave: false })
+    )
+  );
+}
+
 export const dummyCompanies = [
   {
     name: "AutoParts Express",
@@ -12,13 +22,3 @@ export const dummyCompanies = [
     phoneNum: "+15559876543",
   },
 ];
-
-export async function initCompanies() {
-  await Promise.all(
-    dummyCompanies.map((company) =>
-      new Company({
-        ...company,
-      }).save({ validateBeforeSave: false })
-    )
-  );
-}
