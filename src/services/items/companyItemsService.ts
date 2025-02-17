@@ -9,7 +9,15 @@ class CompanyItemsService {
   public async getItems(
     filters: ItemFilters
   ): Promise<PaginationResponse<ICompanyItem>> {
-    const { page = 1, pageSize = 12, search, companies, types } = filters;
+    const {
+      page: pageStr = 1,
+      pageSize: pageSizeStr = 12,
+      search,
+      companies,
+      types,
+    } = filters;
+    const page = Number(pageStr);
+    const pageSize = Number(pageSizeStr);
 
     const filter: mongoose.FilterQuery<ICompanyItem> = {};
     if (search) {
@@ -23,10 +31,7 @@ class CompanyItemsService {
         throw new Error("companies must be an array");
       }
       filter.company = {
-        $in: companies.map((company) => {
-          console.log(company);
-          return new mongoose.Types.ObjectId(company);
-        }),
+        $in: companies.map((company) => new mongoose.Types.ObjectId(company)),
       };
     }
     if (types) {

@@ -1,7 +1,10 @@
+import companyItemsController from "controllers/items/companyItemsComtroller";
 import itemsController from "controllers/items/itemsController";
 import typesController from "controllers/items/typesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
+import { queryValidationMiddleware } from "middleware/validationMiddleware";
+import { companyItemsFilterSchema } from "validation/items/companyItemsFilterValidationSchema";
 
 /**
  * @swagger
@@ -17,8 +20,8 @@ itemsRoute.use(authedMiddleware());
  * /api/items/company-items:
  *   get:
  *     tags: [Items]
- *     summary: Items
- *     description: Get paged items, filtered by query
+ *     summary: Company Items
+ *     description: Get paged company items, filtered by query
  *     parameters:
  *       - in: query
  *         name: page
@@ -67,7 +70,40 @@ itemsRoute.use(authedMiddleware());
  *                         type: string
  *                         example: Fuel Injector
  */
-itemsRoute.get("/company-items", itemsController.getItems);
+itemsRoute.get(
+  "/company-items",
+  queryValidationMiddleware(companyItemsFilterSchema),
+  companyItemsController.getItems
+);
+
+/**
+ * @swagger
+ * /api/items:
+ *   get:
+ *     tags: [Items]
+ *     summary: Items Articles
+ *     description: Get paged items, filtered by query
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 types:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: 123abc
+ *                       name:
+ *                         type: string
+ *                         example: Fuel Injector
+ */
+itemsRoute.get("/", itemsController.getItems);
 
 /**
  * @swagger
