@@ -1,5 +1,6 @@
-import { type IUser, UserRole } from "models/users/User";
+import { type IUser, UserRole } from "models/users/user";
 import mongoose from "mongoose";
+import { Company } from "schemas/companies/company";
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -30,7 +31,8 @@ const userSchema = new mongoose.Schema<IUser>(
       default: UserRole.EMPLOYEE,
     },
     company: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Company.name,
     },
   },
   {

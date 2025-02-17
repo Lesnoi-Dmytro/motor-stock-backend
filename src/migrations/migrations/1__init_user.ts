@@ -1,13 +1,17 @@
-import { UserRole } from "models/users/User";
-import { User } from "schemas/User";
+import { User } from "schemas/users/user";
 import passwordEncodeService from "services/auth/passwordEncodeService";
 
 export async function initUser() {
   await new User({
-    firstName: "John",
-    lastName: "Doe",
-    email: "johndoe@example.com",
-    role: UserRole.EMPLOYEE,
-    password: await passwordEncodeService.encode("password"),
+    ...initialUser,
+    password: await passwordEncodeService.encode(initialUser.password),
   }).save({ validateBeforeSave: false });
 }
+
+export const initialUser = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "johndoe@example.com",
+  role: "EMPLOYEE",
+  password: "password",
+};

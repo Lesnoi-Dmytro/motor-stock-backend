@@ -1,10 +1,10 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import type { IAuthedRequest } from "models/auth/authedRequest";
-import { UserRole } from "models/users/User";
+import { UserRole } from "models/users/user";
 import jwtService from "services/auth/jwtService";
 
-export function authedMiddleware(roles = [UserRole.EMPLOYEE]) {
+export function authedMiddleware(roles?: UserRole[]) {
   return (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization || "Bearer ";
     try {
@@ -17,7 +17,7 @@ export function authedMiddleware(roles = [UserRole.EMPLOYEE]) {
         lastName: jwtPayload.lastName!,
         role: jwtPayload.role!,
       };
-      if (!roles.includes(user.role)) {
+      if (roles && !roles.includes(user.role)) {
         next(createHttpError(403, "Forbidden"));
         return;
       }

@@ -1,6 +1,7 @@
 import { settings } from "config/settings";
 import jwt from "jsonwebtoken";
-import { UserRole, type IUser } from "models/users/User";
+import type { ICompany } from "models/companies/company";
+import { UserRole, type IUser } from "models/users/user";
 
 class JwtService {
   private readonly jwtPrivateKey = settings.jwt_private_key;
@@ -16,7 +17,7 @@ class JwtService {
         lastName: user.lastName,
         color: user.color,
         role: user.role,
-        company: user.company,
+        company: user.company ? (user.company as ICompany)?.name : undefined,
       },
       this.jwtPrivateKey,
       {
@@ -48,7 +49,6 @@ class JwtService {
 
       return decodedToken;
     } catch (error) {
-      console.log(error);
       if (error instanceof jwt.TokenExpiredError) {
         throw new Error("Token expired");
       } else {
@@ -64,7 +64,7 @@ class JwtService {
       payload.firstName &&
       payload.lastName &&
       payload.color &&
-      payload.payload.role &&
+      payload.role &&
       (payload.role !== UserRole.SUPPLIER || payload.company)
     );
   }

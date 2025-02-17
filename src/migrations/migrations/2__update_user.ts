@@ -1,10 +1,11 @@
-import { UserColors } from "models/users/User";
-import { User } from "schemas/User";
+import { initialUser } from "migrations/migrations/1__init_user";
+import { UserColors } from "models/users/user";
+import { User } from "schemas/users/user";
 
 export async function updateUser() {
   await User.findOneAndUpdate(
     {
-      email: "johndoe@example.com",
+      email: initialUser.email,
     },
     {
       $set: {
