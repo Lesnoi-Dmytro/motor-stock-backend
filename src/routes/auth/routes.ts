@@ -1,6 +1,6 @@
 import authController from "controllers/auth/authController";
 import { Router } from "express";
-import validationMiddleware from "middleware/validationMiddleware";
+import { bodyValidationMiddleware } from "middleware/validationMiddleware";
 import { signInRequestSchema } from "validation/auth/signInValidationSchema";
 
 /**
@@ -64,7 +64,7 @@ const authRoute = Router();
  */
 authRoute.post(
   "/sign_in",
-  validationMiddleware(signInRequestSchema),
+  bodyValidationMiddleware(signInRequestSchema),
   authController.signIn
 );
 

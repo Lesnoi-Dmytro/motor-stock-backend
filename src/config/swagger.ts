@@ -1,10 +1,13 @@
 import { settings } from "config/settings";
 import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import { Express } from "express";
 
-const options = {
+const specs = swaggerJsdoc({
   definition: {
     openapi: "3.1.0",
     info: {
+      test: 1,
       title: "MotorStock Express API with Swagger",
       version: "1.0.0",
       description:
@@ -31,6 +34,8 @@ const options = {
     security: [{ BearerAuth: [] }],
   },
   apis: ["src/routes/**/*.ts"],
-};
+});
 
-export const specs = swaggerJsdoc(options);
+export const swaggerDocs = (app: Express) => {
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+};

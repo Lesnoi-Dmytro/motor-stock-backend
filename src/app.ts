@@ -1,13 +1,12 @@
 import express from "express";
 
-import { specs } from "config/swagger";
-import swaggerUi from "swagger-ui-express";
 import { settings } from "config/settings";
 import { corsConfig } from "config/corsConfig";
 import "./config/db";
 import "./migrations/migrate";
 import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
 import routes from "routes/routes";
+import { swaggerDocs } from "config/swagger";
 
 const app = express();
 const PORT = settings.port;
@@ -22,6 +21,6 @@ app.use(express.json());
 
 app.use("/api", routes);
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+swaggerDocs(app);
 
 app.use(errorHandlingMiddleware);

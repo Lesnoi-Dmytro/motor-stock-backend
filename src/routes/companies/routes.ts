@@ -1,4 +1,4 @@
-import typesController from "controllers/types/typesController";
+import typesController from "controllers/items/typesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
 import { UserRole } from "models/users/user";

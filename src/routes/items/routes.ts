@@ -1,4 +1,5 @@
-import typesController from "controllers/types/typesController";
+import itemsController from "controllers/items/itemsController";
+import typesController from "controllers/items/typesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
 
@@ -10,6 +11,63 @@ import { authedMiddleware } from "middleware/authedMiddleware";
  */
 const itemsRoute = Router();
 itemsRoute.use(authedMiddleware());
+
+/**
+ * @swagger
+ * /api/items/company-items:
+ *   get:
+ *     tags: [Items]
+ *     summary: Items
+ *     description: Get paged items, filtered by query
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         type: integer
+ *         description: Page number
+ *         example: 1
+ *       - in: query
+ *         name: pageSize
+ *         type: integer
+ *         description: Page size
+ *         example: 12
+ *       - in: query
+ *         name: search
+ *         type: string
+ *         description: Part of a name or article
+ *         example: 'Fuel'
+ *       - in: query
+ *         name: companies
+ *         type: array
+ *         items: string
+ *         description: Company ids
+ *         example: ['67b337fbd19581c05ed4171f', '67b337fbd19581c05ed41720']
+ *       - in: query
+ *         name: types
+ *         type: array
+ *         items: string
+ *         description: Item types ids
+ *         example: ['67b337fbd19581c05ed41729', '67b337fbd19581c05ed4172b']
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 types:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: 123abc
+ *                       name:
+ *                         type: string
+ *                         example: Fuel Injector
+ */
+itemsRoute.get("/company-items", itemsController.getItems);
 
 /**
  * @swagger
@@ -36,7 +94,7 @@ itemsRoute.use(authedMiddleware());
  *                         example: 123abc
  *                       name:
  *                         type: string
- *                         example: Motor
+ *                         example: Fuel Injector
  */
 itemsRoute.get("/types", typesController.getAllTypes);
 
