@@ -1,14 +1,14 @@
 import type { Request, Response } from "express";
-import typesService from "services/items/typesService";
+import companiesService from "services/companies/companiesService";
 
-class TypesController {
-  public async getAllTypes(req: Request, res: Response) {
-    const types = await typesService.getAllTypes();
+class CompaniesController {
+  public async getAllCompanies(req: Request, res: Response) {
+    const companies = companiesService.getAllCompanies();
 
-    res.json(types);
+    res.json(companies);
   }
 }
 
-const typesController = new TypesController();
+const companiesController = new CompaniesController();
 
-export default typesController;
+export default companiesController;

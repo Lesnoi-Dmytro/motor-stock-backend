@@ -1,4 +1,4 @@
-import typesController from "controllers/items/typesController";
+import companiesController from "controllers/companies/companiesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
 import { UserRole } from "models/users/user";
@@ -45,6 +45,6 @@ companiesRoute.use(authedMiddleware([UserRole.EMPLOYEE]));
  *                         type: string
  *                         example: +380123456789
  */
-companiesRoute.get("/", typesController.getAllTypes);
+companiesRoute.get("/", companiesController.getAllCompanies);
 
 export default companiesRoute;
