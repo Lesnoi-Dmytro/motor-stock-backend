@@ -1,4 +1,3 @@
-import { UserRole } from "models/users/user";
 import { User } from "schemas/users/user";
 import passwordEncodeService from "services/auth/passwordEncodeService";
 
@@ -7,7 +6,7 @@ export async function initUser() {
     firstName: "John",
     lastName: "Doe",
     email: "johndoe@example.com",
-    role: UserRole.EMPLOYEE,
+    role: "EMPLOYEE",
     password: await passwordEncodeService.encode("password"),
   }).save({ validateBeforeSave: false });
 }

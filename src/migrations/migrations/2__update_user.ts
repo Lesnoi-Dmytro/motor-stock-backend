@@ -1,4 +1,4 @@
-import { UserColors } from "models/users/User";
+import { UserColors } from "models/users/user";
 import { User } from "schemas/users/user";
 
 export async function updateUser() {

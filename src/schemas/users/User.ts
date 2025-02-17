@@ -1,4 +1,4 @@
-import { type IUser, UserRole } from "models/users/User";
+import { type IUser, UserRole } from "models/users/user";
 import mongoose from "mongoose";
 import { Company } from "schemas/companies/company";
 

@@ -1,12 +1,24 @@
-const companies = [
+import { Company } from "schemas/companies/company";
+
+export const dummyCompanies = [
   {
     name: "AutoParts Express",
     address: "1234 Industrial Rd, Detroit, MI",
-    phoneNum: "+1-555-123-4567",
+    phoneNum: "+15551234567",
   },
   {
     name: "Elite Car Components",
     address: "5678 Mechanics Ave, Los Angeles, CA",
-    phoneNum: "+1-555-987-6543",
+    phoneNum: "+15559876543",
   },
 ];
+
+export async function initCompanies() {
+  await Promise.all(
+    dummyCompanies.map((company) =>
+      new Company({
+        ...company,
+      }).save({ validateBeforeSave: false })
+    )
+  );
+}

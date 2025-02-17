@@ -1,4 +1,4 @@
-import type { IUser } from "models/users/User";
+import type { IUser } from "models/users/user";
 import { User } from "schemas/users/user";
 
 class UsersService {

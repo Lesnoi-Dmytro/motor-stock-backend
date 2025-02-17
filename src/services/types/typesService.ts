@@ -1,4 +1,4 @@
-import { Type } from "schemas/items/yype";
+import { Type } from "schemas/items/type";
 
 class TypesService {
   public async getAllTypes() {
