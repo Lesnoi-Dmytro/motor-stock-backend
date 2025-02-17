@@ -1,5 +1,5 @@
 import type { CreateCompanyRequest } from "models/companies/createCompanyRequest";
-import { Company } from "schemas/companies/Company";
+import { Company } from "schemas/companies/company";
 
 class CompaniesService {
   public async getAllCompanies() {

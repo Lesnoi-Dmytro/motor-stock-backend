@@ -1,7 +1,7 @@
 import typesController from "controllers/types/typesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
-import { UserRole } from "models/users/User";
+import { UserRole } from "models/users/user";
 
 /**
  * @swagger

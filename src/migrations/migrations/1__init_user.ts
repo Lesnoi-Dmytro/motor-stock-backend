@@ -1,5 +1,5 @@
-import { UserRole } from "models/users/User";
-import { User } from "schemas/users/User";
+import { UserRole } from "models/users/user";
+import { User } from "schemas/users/user";
 import passwordEncodeService from "services/auth/passwordEncodeService";
 
 export async function initUser() {

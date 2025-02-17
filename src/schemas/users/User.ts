@@ -1,6 +1,6 @@
 import { type IUser, UserRole } from "models/users/User";
 import mongoose from "mongoose";
-import { Company } from "schemas/companies/Company";
+import { Company } from "schemas/companies/company";
 
 const userSchema = new mongoose.Schema<IUser>(
   {

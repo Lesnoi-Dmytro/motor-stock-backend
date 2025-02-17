@@ -1,5 +1,5 @@
 import type { IUser } from "models/users/User";
-import { User } from "schemas/users/User";
+import { User } from "schemas/users/user";
 
 class UsersService {
   public async getUserByEmail(
