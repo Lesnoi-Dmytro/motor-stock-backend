@@ -18,7 +18,7 @@ const itemSchema = new mongoose.Schema<IItem>(
     },
     type: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Type.name,
+      ref: Type.modelName,
       required: true,
     },
   },

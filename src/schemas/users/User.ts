@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     company: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Company.name,
+      ref: Company.modelName,
     },
   },
   {

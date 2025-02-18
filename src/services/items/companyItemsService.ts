@@ -55,13 +55,17 @@ class CompanyItemsService {
       {
         $match: filter,
       },
-    ])
-      .skip((page - 1) * pageSize)
-      .limit(pageSize);
+      {
+        $facet: {
+          metadata: [{ $count: "totalItems" }],
+          data: [{ $skip: (page - 1) * pageSize }, { $limit: pageSize }],
+        },
+      },
+    ]);
 
     return {
-      items,
-      totalItems: await CompanyItem.countDocuments(filter),
+      items: items[0].data,
+      totalItems: items[0].metadata[0]?.totalItems,
     };
   }
 }

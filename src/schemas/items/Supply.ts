@@ -6,7 +6,7 @@ const supplySchema = new mongoose.Schema<ISupply>(
   {
     item: {
       type: mongoose.Types.ObjectId,
-      ref: CompanyItem.name,
+      ref: CompanyItem.modelName,
       required: true,
     },
     quantity: {

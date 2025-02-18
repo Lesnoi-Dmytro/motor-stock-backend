@@ -7,12 +7,12 @@ const companyItemSchema = new mongoose.Schema<ICompanyItem>(
   {
     item: {
       type: mongoose.Types.ObjectId,
-      ref: Item.name,
+      ref: Item.modelName,
       required: true,
     },
     company: {
       type: mongoose.Types.ObjectId,
-      ref: Company.name,
+      ref: Company.modelName,
       required: true,
     },
     quantity: {

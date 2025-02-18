@@ -3,7 +3,7 @@ import companiesService from "services/companies/companiesService";
 
 class CompaniesController {
   public async getAllCompanies(req: Request, res: Response) {
-    const companies = companiesService.getAllCompanies();
+    const companies = await companiesService.getAllCompanies();
 
     res.json(companies);
   }
