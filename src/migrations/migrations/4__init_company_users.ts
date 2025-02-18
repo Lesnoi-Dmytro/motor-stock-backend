@@ -27,7 +27,7 @@ const companyUser = {
   lastName: "Doe",
   email: "autoparts@express.com",
   role: "SUPPLIER",
-  password: "password",
+  password: "1234pass",
   company: dummyCompanies[0].name,
   color: UserColors.PINK,
 };
