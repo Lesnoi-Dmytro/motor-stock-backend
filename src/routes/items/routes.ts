@@ -131,6 +131,96 @@ itemsRoute.get(
 
 /**
  * @swagger
+ * /api/items/company-items/{id}:
+ *   get:
+ *     tags: [Items]
+ *     summary: Company Items
+ *     description: Get paged company items, filtered by query
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         requered: true
+ *         description: Company item id
+ *         example: '67b4be14cc9f131fa745b758'
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 item:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: 123456abcdef
+ *                     name:
+ *                       type: string
+ *                       example: Fuel Injector
+ *                     article:
+ *                       type: string
+ *                       example: FI-001
+ *                     descriptiom:
+ *                       type: string
+ *                       exapmle: High-performance fuel injector.
+ *                     type:
+ *                       type: object
+ *                       properties:
+ *                         _id:
+ *                           type: string
+ *                           example: 123456abcdef
+ *                         name:
+ *                           type: string
+ *                           example: Fuel Injector
+ *                     createdAt:
+ *                       type: date
+ *                       example: 2025-01-01T00:00:00.000Z
+ *                     updatedAt:
+ *                       type: date
+ *                       example: 2025-01-01T00:00:00.000Z
+ *                   company:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: 123456abcdef
+ *                       name:
+ *                         type: string
+ *                         example: AutoParts Express
+ *                       address:
+ *                         type: string
+ *                         example: 1234 Industrial Rd, Detroit, MI
+ *                   quantity:
+ *                     type: number
+ *                     example: 10
+ *                   priceHistory:
+ *                     type: array
+ *                     items: object
+ *                     properties:
+ *                       price:
+ *                         type: number
+ *                         example: 100
+ *                       date:
+ *                         type: date
+ *                         example: 2025-01-01T00:00:00.000Z
+ *                   createdAt:
+ *                     type: date
+ *                     example: 2025-01-01T00:00:00.000Z
+ *                   updatedAt:
+ *                     type: date
+ *                     example: 2025-01-01T00:00:00.000Z
+ */
+itemsRoute.get("/company-items/:id", companyItemsController.getItem);
+
+/**
+ * @swagger
  * /api/items:
  *   get:
  *     tags: [Items]

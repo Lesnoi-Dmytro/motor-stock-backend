@@ -68,6 +68,20 @@ class CompanyItemsService {
       totalItems: items[0].metadata[0]?.totalItems,
     };
   }
+
+  public async getItem(id: string): Promise<ICompanyItem | null> {
+    const item = await CompanyItem.findOne({ _id: id })
+      .populate({
+        path: "item",
+        populate: {
+          path: "type",
+        },
+      })
+      .populate("company")
+      .lean();
+
+    return item;
+  }
 }
 
 const companyItemsService = new CompanyItemsService();
