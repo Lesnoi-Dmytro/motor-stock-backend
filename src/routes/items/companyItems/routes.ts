@@ -1,9 +1,10 @@
-import companyItemsController from "controllers/items/companyItemsComtroller";
+import companyItemsController from "controllers/items/companyItemsController";
 import { Router } from "express";
 import {
   bodyValidationMiddleware,
   queryValidationMiddleware,
 } from "middleware/validationMiddleware";
+import suppliesRoute from "routes/items/companyItems/supplies/routes";
 import { companyItemsFilterSchema } from "validation/items/companyItems/companyItemsFilterValidationSchema";
 import { createPriceHistoryItemRequestSchema } from "validation/items/companyItems/createPriceHistoryItemRequestValidationSchema";
 
@@ -21,7 +22,7 @@ const companyItemsRoute = Router();
  *   get:
  *     tags: [CompanyItems]
  *     summary: Company Items
- *     description: Get paged company items, filtered by query
+ *     description: Get paginated company items, filtered by query
  *     parameters:
  *       - in: query
  *         name: page
@@ -135,7 +136,7 @@ companyItemsRoute.get(
  *   get:
  *     tags: [CompanyItems]
  *     summary: Company Items
- *     description: Get paged company items, filtered by query
+ *     description: Get company item by id
  *     parameters:
  *       - in: path
  *         name: id
@@ -417,5 +418,7 @@ companyItemsRoute.put(
   bodyValidationMiddleware(createPriceHistoryItemRequestSchema),
   companyItemsController.updatePrice
 );
+
+companyItemsRoute.use("/supplies", suppliesRoute);
 
 export default companyItemsRoute;

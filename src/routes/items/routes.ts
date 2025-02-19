@@ -19,7 +19,7 @@ itemsRoute.use(authedMiddleware());
  *   get:
  *     tags: [Items]
  *     summary: Items Articles
- *     description: Get paged items, filtered by query
+ *     description: Get paginated items, filtered by query
  *     responses:
  *       '200':
  *         description: Success response

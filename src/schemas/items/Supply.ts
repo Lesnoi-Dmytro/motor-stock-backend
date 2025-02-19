@@ -1,4 +1,4 @@
-import type { ISupply } from "models/items/supply";
+import type { ISupply } from "models/items/companyItem/supplies/supply";
 import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 
