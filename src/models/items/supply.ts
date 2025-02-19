@@ -1,4 +1,4 @@
-import type { ICompanyItem } from "models/items/companyItem";
+import type { ICompanyItem } from "models/items/companyItem/companyItem";
 import type mongoose from "mongoose";
 
 export interface ISupply {

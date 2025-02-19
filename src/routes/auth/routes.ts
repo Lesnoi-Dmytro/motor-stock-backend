@@ -22,7 +22,7 @@ const authRoute = Router();
  *     consumes:
  *       - application/json
  *     requestBody:
- *       requeired: true
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
@@ -79,7 +79,7 @@ authRoute.post(
  *     consumes:
  *       - application/json
  *     requestBody:
- *       requeired: true
+ *       required: true
  *       content:
  *         application/json:
  *           schema:

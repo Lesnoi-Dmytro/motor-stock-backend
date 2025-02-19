@@ -1,9 +1,10 @@
-import type { ICompanyItem } from "models/items/companyItem";
+import type { ICompanyItem } from "models/items/companyItem/companyItem";
 import { PaginationResponse } from "./../../models/pagination";
-import type { ItemFilters } from "models/items/itemFilters";
+import type { ItemFilters } from "models/items/companyItem/itemFilters";
 import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 import { startsWith } from "utils/reqex/regexUtils";
+import type { createPriceHistoryItemRequest } from "models/items/companyItem/createPriceHistoryRequest";
 
 class CompanyItemsService {
   public async getItems(
@@ -80,7 +81,76 @@ class CompanyItemsService {
       .populate("company")
       .lean();
 
+    if (!item) {
+      throw new Error("Item not found");
+    }
+
     return item;
+  }
+
+  public async addPrice(id: string, price: createPriceHistoryItemRequest) {
+    const item = await CompanyItem.findOneAndUpdate(
+      { _id: id },
+      {
+        $push: {
+          priceHistory: {
+            price: price.price,
+            date: price.date,
+          },
+        },
+      },
+      { new: true }
+    ).lean();
+
+    if (!item) {
+      throw new Error("Item not found");
+    }
+
+    return item.priceHistory.at(-1);
+  }
+
+  public async deletePrice(id: string, priceId: string) {
+    const item = await CompanyItem.findOneAndUpdate(
+      { _id: id },
+      {
+        $pull: {
+          priceHistory: {
+            _id: priceId,
+          },
+        },
+      },
+      { new: true }
+    ).lean();
+
+    if (!item) {
+      throw new Error("Item not found");
+    }
+  }
+
+  public async updatePrice(
+    id: string,
+    priceId: string,
+    price: createPriceHistoryItemRequest
+  ) {
+    const item = await CompanyItem.findById(id);
+    if (!item) {
+      throw new Error("Item not found");
+    }
+
+    const oldPrice = item.priceHistory.find(
+      (price) => price._id.toString() === priceId
+    );
+    if (!oldPrice) {
+      throw new Error("Price not found");
+    }
+
+    oldPrice.price = price.price;
+    oldPrice.date = new Date(price.date);
+    oldPrice.updatedAt = new Date();
+
+    item.save();
+
+    return oldPrice;
   }
 }
 

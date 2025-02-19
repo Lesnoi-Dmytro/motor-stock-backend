@@ -7,10 +7,15 @@ export interface ICompanyItem {
   item: mongoose.Types.ObjectId | IItem;
   company: mongoose.Types.ObjectId | ICompany;
   quantity: number;
-  priceHistory: [
-    {
-      price: number;
-      date: Date;
-    }
-  ];
+  priceHistory: IPriceHistoryItem[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IPriceHistoryItem {
+  _id: mongoose.Types.ObjectId;
+  price: number;
+  date: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

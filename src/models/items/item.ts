@@ -7,4 +7,6 @@ export interface IItem {
   article: string;
   description: string;
   type: mongoose.Types.ObjectId | IType;
+  createdAt: Date;
+  updatedAt: Date;
 }
