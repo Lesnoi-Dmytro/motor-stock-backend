@@ -53,6 +53,17 @@ class CompanyItemsController {
     }
   }
 
+  public async deleteItem(req: Request, res: Response, next: NextFunction) {
+    try {
+      const id = req.params.id;
+      await companyItemsService.deleteItem(id);
+      res.json({ message: "Company Item deleted" });
+    } catch (err: unknown) {
+      console.error(err);
+      next(createHttpError(400, (err as Error).message));
+    }
+  }
+
   public async addPrice(req: Request, res: Response, next: NextFunction) {
     try {
       const id = req.params.id;

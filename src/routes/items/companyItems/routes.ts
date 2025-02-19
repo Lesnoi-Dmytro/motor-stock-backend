@@ -141,7 +141,7 @@ companyItemsRoute.get(
  *         name: id
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Company item id
  *         example: '67b4be14cc9f131fa745b758'
  *     responses:
@@ -221,6 +221,35 @@ companyItemsRoute.get("/:id", companyItemsController.getItem);
 
 /**
  * @swagger
+ * /api/items/company-items/{id}:
+ *   delete:
+ *     tags: [CompanyItems]
+ *     summary: Delete Company Items
+ *     description: Delete company item by id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Company item id
+ *         example: '67b4be14cc9f131fa745b758'
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Company Item deleted
+ */
+companyItemsRoute.delete("/:id", companyItemsController.deleteItem);
+
+/**
+ * @swagger
  * /api/items/company-items/{id}/price:
  *   post:
  *     tags: [CompanyItems]
@@ -231,7 +260,7 @@ companyItemsRoute.get("/:id", companyItemsController.getItem);
  *         name: id
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Company item id
  *         example: '67b4be14cc9f131fa745b758'
  *     requestBody:
@@ -293,14 +322,14 @@ companyItemsRoute.post(
  *         name: id
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Company Item id
  *         example: '67b4be14cc9f131fa745b758'
  *       - in: path
  *         name: priceId
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Price id
  *         example: '67b4be14cc9f131fa745b758'
  *     responses:
@@ -332,14 +361,14 @@ companyItemsRoute.delete(
  *         name: id
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Company Item id
  *         example: '67b4be14cc9f131fa745b758'
  *       - in: path
  *         name: priceId
  *         schema:
  *           type: string
- *         requered: true
+ *         required: true
  *         description: Price id
  *         example: '67b4be14cc9f131fa745b758'
  *     requestBody:

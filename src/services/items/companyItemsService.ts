@@ -88,6 +88,13 @@ class CompanyItemsService {
     return item;
   }
 
+  public async deleteItem(id: string) {
+    const res = await CompanyItem.deleteOne({ _id: id }).lean();
+    if (res.deletedCount === 0) {
+      throw new Error("Item not found");
+    }
+  }
+
   public async addPrice(id: string, price: createPriceHistoryItemRequest) {
     const item = await CompanyItem.findOneAndUpdate(
       { _id: id },
