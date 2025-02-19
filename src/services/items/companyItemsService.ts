@@ -159,6 +159,25 @@ class CompanyItemsService {
 
     return oldPrice;
   }
+
+  public getPriceByDate(item: ICompanyItem, date: Date) {
+    const history = item.priceHistory.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    if (!history.length) {
+      return undefined;
+    }
+
+    let i = history.length - 1;
+    while (history[i].date.getTime() > date.getTime()) {
+      i--;
+      if (i < 0) {
+        return undefined;
+      }
+    }
+
+    return history[i];
+  }
 }
 
 const companyItemsService = new CompanyItemsService();

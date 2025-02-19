@@ -19,9 +19,7 @@ export async function initItems() {
 
   await Promise.all(
     updatedItems.map((item) =>
-      new Item({
-        ...item,
-      }).save({ validateBeforeSave: false })
+      new Item(item).save({ validateBeforeSave: false })
     )
   );
 }

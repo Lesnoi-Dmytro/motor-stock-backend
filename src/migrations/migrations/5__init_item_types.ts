@@ -2,11 +2,7 @@ import { Type } from "schemas/items/type";
 
 export async function initTypes() {
   await Promise.all(
-    basicTypes.map((type) =>
-      new Type({
-        ...type,
-      }).save({ validateBeforeSave: false })
-    )
+    basicTypes.map((type) => new Type(type).save({ validateBeforeSave: false }))
   );
 }
 

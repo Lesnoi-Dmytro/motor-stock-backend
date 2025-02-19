@@ -28,9 +28,7 @@ export async function initCompanyItems() {
 
   await Promise.all(
     updatedItems.map((item) =>
-      new CompanyItem({
-        ...item,
-      }).save({ validateBeforeSave: false })
+      new CompanyItem(item).save({ validateBeforeSave: false })
     )
   );
 }
@@ -38,7 +36,7 @@ export async function initCompanyItems() {
 const date = new Date(2025, 1, 1);
 const nextMonth = new Date(new Date(date).setMonth(date.getMonth() + 1));
 
-const basicCompanyItems = [
+export const basicCompanyItems = [
   {
     item: basicItems[0],
     company: dummyCompanies[0],
