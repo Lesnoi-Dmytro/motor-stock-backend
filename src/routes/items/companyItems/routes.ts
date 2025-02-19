@@ -1,6 +1,9 @@
 import companyItemsController from "controllers/items/companyItemsComtroller";
 import { Router } from "express";
-import { queryValidationMiddleware } from "middleware/validationMiddleware";
+import {
+  bodyValidationMiddleware,
+  queryValidationMiddleware,
+} from "middleware/validationMiddleware";
 import { companyItemsFilterSchema } from "validation/items/companyItems/companyItemsFilterValidationSchema";
 import { createPriceHistoryItemRequestSchema } from "validation/items/companyItems/createPriceHistoryItemRequestValidationSchema";
 
@@ -274,7 +277,7 @@ companyItemsRoute.get("/:id", companyItemsController.getItem);
  */
 companyItemsRoute.post(
   "/:id/price",
-  queryValidationMiddleware(createPriceHistoryItemRequestSchema),
+  bodyValidationMiddleware(createPriceHistoryItemRequestSchema),
   companyItemsController.addPrice
 );
 
@@ -382,7 +385,7 @@ companyItemsRoute.delete(
  */
 companyItemsRoute.put(
   "/:id/price/:priceId",
-  queryValidationMiddleware(createPriceHistoryItemRequestSchema),
+  bodyValidationMiddleware(createPriceHistoryItemRequestSchema),
   companyItemsController.updatePrice
 );
 
