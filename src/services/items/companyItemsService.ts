@@ -145,7 +145,7 @@ class CompanyItemsService {
     }
 
     oldPrice.price = price.price;
-    oldPrice.date = new Date(price.date);
+    oldPrice.date = price.date;
     oldPrice.updatedAt = new Date();
 
     item.save();
