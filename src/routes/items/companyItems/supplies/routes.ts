@@ -4,7 +4,10 @@ import {
   bodyValidationMiddleware,
   queryValidationMiddleware,
 } from "middleware/validationMiddleware";
-import { createSupplyRequestSchema } from "validation/items/companyItems/supplies/createSupplyRequestValidationSchema";
+import {
+  createSupplyRequestSchema,
+  updateSupplyRequestSchema,
+} from "validation/items/companyItems/supplies/createSupplyRequestValidationSchema";
 import { suppliesFilterSchema } from "validation/items/companyItems/supplies/suppliesFilterValidationSchema";
 
 /**
@@ -233,7 +236,7 @@ suppliesRoute.delete("/:id", suppliesController.deleteSupply);
  */
 suppliesRoute.put(
   "/:id",
-  bodyValidationMiddleware(createSupplyRequestSchema),
+  bodyValidationMiddleware(updateSupplyRequestSchema),
   suppliesController.updateSupply
 );
 

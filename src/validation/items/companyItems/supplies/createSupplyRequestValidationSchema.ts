@@ -9,3 +9,11 @@ export const createSupplyRequestSchema = z
     date: z.coerce.date(),
   })
   .strict();
+
+export const updateSupplyRequestSchema = z
+  .object({
+    quantity: z.number().min(1),
+    price: z.number().min(0.01),
+    date: z.coerce.date(),
+  })
+  .strict();

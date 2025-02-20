@@ -96,7 +96,7 @@ class SuppliesService {
     }
     await CompanyItem.findOneAndUpdate(
       {
-        _id: new mongoose.Types.ObjectId(supply.item),
+        _id: new mongoose.Types.ObjectId(res.item._id),
       },
       {
         $inc: { quantity: supply.quantity - res.quantity },
