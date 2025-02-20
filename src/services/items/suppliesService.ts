@@ -47,24 +47,40 @@ class SuppliesService {
   }
 
   public async createSupply(supply: ICreateSupplyRequest) {
-    const item = await CompanyItem.findById(
-      new mongoose.Types.ObjectId(supply.item)
+    const newSupply = await Supply.create(supply);
+
+    const item = await CompanyItem.findOneAndUpdate(
+      new mongoose.Types.ObjectId(supply.item),
+      { $inc: { quantity: supply.quantity } },
+      { new: true }
     );
     if (!item) {
       throw new Error("Item not found");
     }
-    item.quantity += supply.quantity;
-    await item.save();
 
-    return await Supply.create(supply);
+    return newSupply;
   }
 
   public async deleteSupply(id: string) {
-    const res = await Supply.deleteOne({
-      _id: new mongoose.Types.ObjectId(id),
-    });
-    if (res.deletedCount === 0) {
+    const res = await Supply.findOneAndDelete(
+      {
+        _id: new mongoose.Types.ObjectId(id),
+      },
+      {
+        returnDocument: "before",
+      }
+    );
+    if (!res) {
       throw new Error("Supply not found");
+    }
+
+    const item = await CompanyItem.findOneAndUpdate(
+      res?.item._id,
+      { $inc: { quantity: -res.quantity } },
+      { new: true }
+    );
+    if (!item) {
+      throw new Error("Item not found");
     }
   }
 
