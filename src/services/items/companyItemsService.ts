@@ -1,6 +1,6 @@
 import type { ICompanyItem } from "models/items/companyItem/companyItem";
 import { PaginationResponse } from "./../../models/pagination";
-import type { ItemFilters } from "models/items/companyItem/itemFilters";
+import type { CompanyItemFilters } from "models/items/companyItem/companyItemFilters";
 import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 import { startsWith } from "utils/reqex/regexUtils";
@@ -8,7 +8,7 @@ import type { createPriceHistoryItemRequest } from "models/items/companyItem/cre
 
 class CompanyItemsService {
   public async getItems(
-    filters: ItemFilters
+    filters: CompanyItemFilters
   ): Promise<PaginationResponse<ICompanyItem>> {
     const { page, pageSize, search, companies, types } = filters;
 
@@ -93,6 +93,8 @@ class CompanyItemsService {
     if (res.deletedCount === 0) {
       throw new Error("Item not found");
     }
+
+    await CompanyItem.deleteMany({ item: id });
   }
 
   public async addPrice(id: string, price: createPriceHistoryItemRequest) {

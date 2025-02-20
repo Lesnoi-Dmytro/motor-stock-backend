@@ -2,9 +2,9 @@ import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
 import type { IAuthedRequest } from "models/auth/authedRequest";
 import type {
-  ItemFilters,
-  ItemFiltersRequest,
-} from "models/items/companyItem/itemFilters";
+  CompanyItemFilters,
+  CompanyItemFiltersRequest,
+} from "models/items/companyItem/companyItemFilters";
 import { Company } from "schemas/companies/company";
 import companyItemsService from "services/items/companyItemsService";
 import { stringOrUndefinedToArray } from "utils/arrays/stringToArray";
@@ -12,8 +12,8 @@ import { stringOrUndefinedToArray } from "utils/arrays/stringToArray";
 class CompanyItemsController {
   public async getItems(req: Request, res: Response, next: NextFunction) {
     try {
-      const query: ItemFiltersRequest = req.query;
-      const filters: ItemFilters = {
+      const query: CompanyItemFiltersRequest = req.query;
+      const filters: CompanyItemFilters = {
         page: Number(query.page) || 1,
         pageSize: Number(query.pageSize) || 12,
         search: query.search,

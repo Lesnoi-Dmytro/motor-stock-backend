@@ -192,9 +192,6 @@ suppliesRoute.delete("/:id", suppliesController.deleteSupply);
  *         application/json:
  *           type: object
  *           properties:
- *             item:
- *               type: string
- *               example: 123abc
  *             quantity:
  *               type: number
  *               example: 10
