@@ -5,11 +5,10 @@ import type { IUpdateSupplyRequest } from "models/items/companyItem/supplies/upd
 import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 import { Supply } from "schemas/items/supply";
-import companyItemsService from "services/items/companyItemsService";
 
 class SuppliesService {
   public async getSupplies(query: ISuppliesFilters) {
-    const { page, pageSize, item } = query;
+    const { page, pageSize, item, sort } = query;
 
     const filter: mongoose.FilterQuery<ISupply> = {};
 
@@ -17,10 +16,22 @@ class SuppliesService {
       filter.item = new mongoose.Types.ObjectId(item);
     }
 
-    const items = await Supply.aggregate([
+    const pipeline: mongoose.PipelineStage[] = [
       {
         $match: filter,
       },
+    ];
+
+    if (sort === "date") {
+      pipeline.push({
+        $sort: {
+          date: -1,
+        },
+      });
+    }
+
+    const items = await Supply.aggregate([
+      ...pipeline,
       {
         $facet: {
           metadata: [{ $count: "totalItems" }],
@@ -36,23 +47,22 @@ class SuppliesService {
   }
 
   public async createSupply(supply: ICreateSupplyRequest) {
-    const item = await CompanyItem.findById(supply.item).lean();
+    const item = await CompanyItem.findById(
+      new mongoose.Types.ObjectId(supply.item)
+    );
     if (!item) {
       throw new Error("Item not found");
     }
-    const price = companyItemsService.getPriceByDate(item, supply.date);
-    if (!price) {
-      throw new Error("Price not found");
-    }
+    item.quantity += supply.quantity;
+    await item.save();
 
-    return await Supply.create({
-      ...supply,
-      price: price.price * supply.quantity,
-    });
+    return await Supply.create(supply);
   }
 
   public async deleteSupply(id: string) {
-    const res = await Supply.deleteOne({ _id: id });
+    const res = await Supply.deleteOne({
+      _id: new mongoose.Types.ObjectId(id),
+    });
     if (res.deletedCount === 0) {
       throw new Error("Supply not found");
     }
@@ -60,13 +70,23 @@ class SuppliesService {
 
   public async updateSupply(id: string, supply: IUpdateSupplyRequest) {
     const res = await Supply.findOneAndUpdate(
-      { _id: id },
-      { $set: supply }
+      { _id: new mongoose.Types.ObjectId(id) },
+      { $set: supply },
+      { returnDocument: "before" }
     ).lean();
 
     if (!res) {
       throw new Error("Supply not found");
     }
+    await CompanyItem.findOneAndUpdate(
+      {
+        _id: new mongoose.Types.ObjectId(supply.item),
+      },
+      {
+        $inc: { quantity: supply.quantity - res.quantity },
+      }
+    );
+
     return res;
   }
 }

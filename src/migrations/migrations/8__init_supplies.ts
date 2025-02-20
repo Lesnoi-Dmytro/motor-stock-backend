@@ -57,9 +57,15 @@ export async function initSupplies() {
   );
 
   await Promise.all(
-    updatedSupplies.map((supply) =>
-      new Supply(supply).save({ validateBeforeSave: false })
-    )
+    updatedSupplies.map(async (supply) => {
+      await new Supply(supply).save({ validateBeforeSave: false });
+      await CompanyItem.findOneAndUpdate(
+        { _id: supply.item._id },
+        {
+          $inc: { quantity: supply.quantity },
+        }
+      );
+    })
   );
 }
 

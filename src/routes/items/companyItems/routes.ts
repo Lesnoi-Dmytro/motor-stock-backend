@@ -15,6 +15,7 @@ import { createPriceHistoryItemRequestSchema } from "validation/items/companyIte
  *   description: Stock Company Items
  */
 const companyItemsRoute = Router();
+companyItemsRoute.use("/supplies", suppliesRoute);
 
 /**
  * @swagger
@@ -418,7 +419,5 @@ companyItemsRoute.put(
   bodyValidationMiddleware(createPriceHistoryItemRequestSchema),
   companyItemsController.updatePrice
 );
-
-companyItemsRoute.use("/supplies", suppliesRoute);
 
 export default companyItemsRoute;

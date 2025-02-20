@@ -8,5 +8,6 @@ export const suppliesFilterSchema = paginationSchema.merge(
       .string()
       .refine((value) => mongoose.Types.ObjectId.isValid(value))
       .optional(),
+    sort: z.string().optional(),
   })
 );

@@ -11,12 +11,14 @@ class SuppliesController {
       page = "1",
       pageSize = "10",
       item,
+      sort,
     } = req.query as ISuppliesRequestFilters;
 
     const items = await suppliesService.getSupplies({
       page: Number(page),
       pageSize: Number(pageSize),
       item,
+      sort,
     });
     res.json(items);
   }

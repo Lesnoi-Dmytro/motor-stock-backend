@@ -6,7 +6,6 @@ import {
 } from "middleware/validationMiddleware";
 import { createSupplyRequestSchema } from "validation/items/companyItems/supplies/createSupplyRequestValidationSchema";
 import { suppliesFilterSchema } from "validation/items/companyItems/supplies/suppliesFilterValidationSchema";
-import { updateSupplyRequestSchema } from "validation/items/companyItems/supplies/updateSupplyRequestValidationSchema";
 
 /**
  * @swagger
@@ -102,6 +101,9 @@ suppliesRoute.get(
  *             quantity:
  *               type: number
  *               example: 10
+ *             price:
+ *               type: number
+ *               example: 10.00
  *             date:
  *               type: date
  *               example: 2025-01-01T00:00:00.000Z
@@ -166,7 +168,7 @@ suppliesRoute.post(
  *                   type: string
  *                   example: Supply deleted
  */
-suppliesRoute.delete("/:id", suppliesController.getSupplies);
+suppliesRoute.delete("/:id", suppliesController.deleteSupply);
 
 /**
  * @swagger
@@ -231,8 +233,8 @@ suppliesRoute.delete("/:id", suppliesController.getSupplies);
  */
 suppliesRoute.put(
   "/:id",
-  bodyValidationMiddleware(updateSupplyRequestSchema),
-  suppliesController.getSupplies
+  bodyValidationMiddleware(createSupplyRequestSchema),
+  suppliesController.updateSupply
 );
 
 export default suppliesRoute;
