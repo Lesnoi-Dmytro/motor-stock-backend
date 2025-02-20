@@ -85,15 +85,16 @@ class SuppliesService {
   }
 
   public async updateSupply(id: string, supply: IUpdateSupplyRequest) {
-    const res = await Supply.findOneAndUpdate(
-      { _id: new mongoose.Types.ObjectId(id) },
-      { $set: supply },
-      { returnDocument: "before" }
-    ).lean();
+    const res = await Supply.findById(new mongoose.Types.ObjectId(id));
 
     if (!res) {
       throw new Error("Supply not found");
     }
+    res.quantity = supply.quantity;
+    res.date = supply.date;
+    res.price = supply.price;
+    await res.save();
+
     await CompanyItem.findOneAndUpdate(
       {
         _id: new mongoose.Types.ObjectId(res.item._id),
