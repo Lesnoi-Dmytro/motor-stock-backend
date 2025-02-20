@@ -90,6 +90,8 @@ class SuppliesService {
     if (!res) {
       throw new Error("Supply not found");
     }
+
+    const amountDiff = supply.quantity - res.quantity;
     res.quantity = supply.quantity;
     res.date = supply.date;
     res.price = supply.price;
@@ -100,7 +102,7 @@ class SuppliesService {
         _id: new mongoose.Types.ObjectId(res.item._id),
       },
       {
-        $inc: { quantity: supply.quantity - res.quantity },
+        $inc: { quantity: amountDiff },
       }
     );
 
