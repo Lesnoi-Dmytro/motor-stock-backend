@@ -7,7 +7,12 @@ export const createCompanyItemSchema = z
     company: z
       .string()
       .refine((value) => mongoose.Types.ObjectId.isValid(value)),
-    item: createItemSchema,
+    item: z.union([
+      z.object({
+        article: z.string(),
+      }),
+      createItemSchema,
+    ]),
     price: z.number().min(0.01),
     quantity: z.number().min(1).optional(),
   })

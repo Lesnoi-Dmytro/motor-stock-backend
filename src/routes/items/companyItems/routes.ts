@@ -132,6 +132,95 @@ companyItemsRoute.get(
   companyItemsController.getItems
 );
 
+/**
+ * @swagger
+ * /api/items/company-items:
+ *   post:
+ *     tags: [CompanyItems]
+ *     summary: Create Company Items
+ *     description: Create company item
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               company:
+ *                 required: true
+ *                 type: string
+ *                 example: 123abc
+ *               item:
+ *                 required: true
+ *                 type: object
+ *                 properties:
+ *                   article:
+ *                     required: true
+ *                     type: string
+ *                     example: FI-001
+ *                   type:
+ *                     type: string
+ *                     example: Fuel Injector
+ *                   name:
+ *                     type: string
+ *                     example: Fuel Injector v1
+ *                   description:
+ *                     type: string
+ *                     example: High-performance fuel injector.
+ *               price:
+ *                 required: true
+ *                 type: number
+ *                 example: 10.00
+ *               quantity:
+ *                 type: number
+ *                 example: 10
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 item:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 company:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 quantity:
+ *                   type: number
+ *                   example: 10
+ *                 priceHistory:
+ *                   type: array
+ *                   items: object
+ *                   properties:
+ *                     price:
+ *                       type: number
+ *                       example: 100
+ *                     date:
+ *                       type: date
+ *                       example: 2025-01-01T00:00:00.000Z
+ *                 createdAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
+ *                 updatedAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
+ *       '400':
+ *         description: Item already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Item already exists
+ */
 companyItemsRoute.post(
   "/",
   bodyValidationMiddleware(createCompanyItemSchema),
@@ -194,37 +283,37 @@ companyItemsRoute.post(
  *                     updatedAt:
  *                       type: date
  *                       example: 2025-01-01T00:00:00.000Z
- *                   company:
- *                     type: object
- *                     properties:
- *                       _id:
- *                         type: string
- *                         example: 123456abcdef
- *                       name:
- *                         type: string
- *                         example: AutoParts Express
- *                       address:
- *                         type: string
- *                         example: 1234 Industrial Rd, Detroit, MI
- *                   quantity:
- *                     type: number
- *                     example: 10
- *                   priceHistory:
- *                     type: array
- *                     items: object
- *                     properties:
- *                       price:
- *                         type: number
- *                         example: 100
- *                       date:
- *                         type: date
- *                         example: 2025-01-01T00:00:00.000Z
- *                   createdAt:
- *                     type: date
- *                     example: 2025-01-01T00:00:00.000Z
- *                   updatedAt:
- *                     type: date
- *                     example: 2025-01-01T00:00:00.000Z
+ *                 company:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: 123456abcdef
+ *                     name:
+ *                       type: string
+ *                       example: AutoParts Express
+ *                     address:
+ *                       type: string
+ *                       example: 1234 Industrial Rd, Detroit, MI
+ *                 quantity:
+ *                   type: number
+ *                   example: 10
+ *                 priceHistory:
+ *                   type: array
+ *                   items: object
+ *                   properties:
+ *                     price:
+ *                       type: number
+ *                       example: 100
+ *                     date:
+ *                       type: date
+ *                       example: 2025-01-01T00:00:00.000Z
+ *                 createdAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
+ *                 updatedAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
  */
 companyItemsRoute.get("/:id", companyItemsController.getItem);
 
