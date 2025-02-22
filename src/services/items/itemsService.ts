@@ -19,6 +19,17 @@ class ItemsService {
 
     const items = await Item.aggregate([
       {
+        $lookup: {
+          from: "types",
+          localField: "type",
+          foreignField: "_id",
+          as: "type",
+        },
+      },
+      {
+        $unwind: "$type",
+      },
+      {
         $match: filter,
       },
       {

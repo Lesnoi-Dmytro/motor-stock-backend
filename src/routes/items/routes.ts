@@ -2,7 +2,9 @@ import itemsController from "controllers/items/itemsController";
 import typesController from "controllers/items/typesController";
 import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
+import { queryValidationMiddleware } from "middleware/validationMiddleware";
 import companyItemsRoute from "routes/items/companyItems/routes";
+import { typesFilterSchema } from "validation/items/types/typesFiltersValidationSchema";
 
 /**
  * @swagger
@@ -12,6 +14,7 @@ import companyItemsRoute from "routes/items/companyItems/routes";
  */
 const itemsRoute = Router();
 itemsRoute.use(authedMiddleware());
+itemsRoute.use("/company-items", companyItemsRoute);
 
 /**
  * @swagger
@@ -61,8 +64,14 @@ itemsRoute.use(authedMiddleware());
  *                         type: string
  *                         example: A fuel injector that injects fuel into an engine's combustion chamber.
  *                       type:
- *                         type: string
- *                         example: 123abc
+ *                         type: object
+ *                         properties:
+ *                           _id:
+ *                             type: string
+ *                             example: 123abc
+ *                           name:
+ *                             type: string
+ *                             example: Fuel Injector
  *                       createdAt:
  *                         type: date
  *                         example: 2025-01-01T00:00:00.000Z
@@ -81,7 +90,28 @@ itemsRoute.get("/", itemsController.getItems);
  *   get:
  *     tags: [Items]
  *     summary: Types
- *     description: All item types
+ *     description: Paginaged item types, filtered by query
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         type: integer
+ *         description: Page number
+ *         example: 1
+ *       - in: query
+ *         name: pageSize
+ *         type: integer
+ *         description: Page size
+ *         example: 10
+ *       - in: query
+ *         name: name
+ *         type: string
+ *         description: Type name prefix
+ *         example: Fuel
+ *       - in: query
+ *         name: ids
+ *         type: string
+ *         description: Type ids
+ *         example: 123abc,456def
  *     responses:
  *       '200':
  *         description: Success response
@@ -90,7 +120,7 @@ itemsRoute.get("/", itemsController.getItems);
  *             schema:
  *               type: object
  *               properties:
- *                 types:
+ *                 items:
  *                   type: array
  *                   items:
  *                     type: object
@@ -101,9 +131,14 @@ itemsRoute.get("/", itemsController.getItems);
  *                       name:
  *                         type: string
  *                         example: Fuel Injector
+ *                 totalItems:
+ *                   type: integer
+ *                   example: 10
  */
-itemsRoute.get("/types", typesController.getAllTypes);
-
-itemsRoute.use("/company-items", companyItemsRoute);
+itemsRoute.get(
+  "/types",
+  queryValidationMiddleware(typesFilterSchema),
+  typesController.getAllTypes
+);
 
 export default itemsRoute;

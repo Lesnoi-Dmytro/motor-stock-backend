@@ -1,4 +1,4 @@
-import type { IType } from "models/items/type";
+import type { IType } from "models/items/types/type";
 import mongoose from "mongoose";
 
 const typeSchema = new mongoose.Schema<IType>(
