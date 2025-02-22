@@ -4,6 +4,7 @@ import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
 import { queryValidationMiddleware } from "middleware/validationMiddleware";
 import companyItemsRoute from "routes/items/companyItems/routes";
+import { itemsFilterSchema } from "validation/items/itemsFiltersValidationSchema";
 import { typesFilterSchema } from "validation/items/types/typesFiltersValidationSchema";
 
 /**
@@ -82,7 +83,11 @@ itemsRoute.use("/company-items", companyItemsRoute);
  *                   type: integer
  *                   example: 10
  */
-itemsRoute.get("/", itemsController.getItems);
+itemsRoute.get(
+  "/",
+  queryValidationMiddleware(itemsFilterSchema),
+  itemsController.getItems
+);
 
 /**
  * @swagger

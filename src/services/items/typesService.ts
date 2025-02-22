@@ -41,6 +41,10 @@ class TypesService {
     return await Type.find({ _id: { $in: ids } });
   }
 
+  public async getTypeByName(name: string) {
+    return await Type.findOne({ name });
+  }
+
   public async createType(name: string) {
     return await Type.create({ name });
   }

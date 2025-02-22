@@ -6,6 +6,7 @@ import {
 } from "middleware/validationMiddleware";
 import suppliesRoute from "routes/items/companyItems/supplies/routes";
 import { companyItemsFilterSchema } from "validation/items/companyItems/companyItemsFilterValidationSchema";
+import { createCompanyItemSchema } from "validation/items/companyItems/createCompanyItemValidationSchema";
 import { createPriceHistoryItemRequestSchema } from "validation/items/companyItems/createPriceHistoryItemRequestValidationSchema";
 
 /**
@@ -129,6 +130,12 @@ companyItemsRoute.get(
   "/",
   queryValidationMiddleware(companyItemsFilterSchema),
   companyItemsController.getItems
+);
+
+companyItemsRoute.post(
+  "/",
+  bodyValidationMiddleware(createCompanyItemSchema),
+  companyItemsController.createItem
 );
 
 /**

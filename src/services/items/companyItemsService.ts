@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 import { startsWith } from "utils/reqex/regexUtils";
 import type { createPriceHistoryItemRequest } from "models/items/companyItem/createPriceHistoryRequest";
+import itemsService from "services/items/itemsService";
+import type { ICreateCompanyItemRequest } from "models/items/companyItem/createCompanyItemRequest";
+import suppliesService from "services/items/suppliesService";
 
 class CompanyItemsService {
   public async getItems(
@@ -179,6 +182,39 @@ class CompanyItemsService {
     }
 
     return history[i];
+  }
+
+  public async createItem(companyItem: ICreateCompanyItemRequest) {
+    let item = await itemsService.getItemByArticle(companyItem.item.article);
+    if (!item) {
+      item = await itemsService.createItem(companyItem.item);
+    }
+    const oldItem = await CompanyItem.findOne({
+      item: item._id,
+      company: companyItem.company,
+    }).lean();
+    if (oldItem) {
+      throw new Error("Item already exists");
+    }
+
+    const newCompanyItem = await CompanyItem.create({
+      item: item._id,
+      company: companyItem.company,
+      priceHistory: [{ price: companyItem.price, date: new Date() }],
+      quantity: companyItem.quantity,
+    });
+
+    if (companyItem.quantity) {
+      await suppliesService.createSupply({
+        item: newCompanyItem._id.toString(),
+        quantity: companyItem.quantity,
+        date: new Date(),
+        price: companyItem.price * companyItem.quantity,
+      });
+      newCompanyItem.quantity = companyItem.quantity;
+    }
+
+    return newCompanyItem;
   }
 }
 

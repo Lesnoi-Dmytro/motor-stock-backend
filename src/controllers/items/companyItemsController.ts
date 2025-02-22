@@ -102,6 +102,16 @@ class CompanyItemsController {
       next(createHttpError(400, (err as Error).message));
     }
   }
+
+  public async createItem(req: Request, res: Response, next: NextFunction) {
+    try {
+      const item = await companyItemsService.createItem(req.body);
+      res.json(item);
+    } catch (error: unknown) {
+      console.error(error);
+      next(createHttpError(400, (error as Error).message));
+    }
+  }
 }
 
 const companyItemsController = new CompanyItemsController();

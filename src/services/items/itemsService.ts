@@ -4,6 +4,8 @@ import type { IItem } from "models/items/item";
 import { startsWith } from "utils/reqex/regexUtils";
 import type mongoose from "mongoose";
 import type { PaginationResponse } from "models/pagination";
+import typesService from "services/items/typesService";
+import type { ICreateItemRequest } from "models/items/itemCreateRequest";
 
 class ItemsService {
   public async getItems(
@@ -44,6 +46,22 @@ class ItemsService {
       items: items[0].data,
       totalItems: items[0].metadata[0]?.totalItems || 0,
     };
+  }
+
+  public async getItemByArticle(article: string): Promise<IItem | null> {
+    return await Item.findOne({ article }).lean();
+  }
+
+  public async createItem(item: ICreateItemRequest): Promise<IItem> {
+    let type = await typesService.getTypeByName(item.type);
+    if (!type) {
+      type = await typesService.createType(item.type);
+    }
+
+    return await Item.create({
+      ...item,
+      type: type._id,
+    });
   }
 }
 
