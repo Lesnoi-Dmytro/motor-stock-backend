@@ -108,6 +108,11 @@ itemsRoute.get("/", itemsController.getItems);
  *         description: Type name prefix
  *         example: Fuel
  *       - in: query
+ *         name: exclude
+ *         type: string
+ *         description: Type ids to exclude
+ *         example: 123abc,456def
+ *       - in: query
  *         name: ids
  *         type: string
  *         description: Type ids

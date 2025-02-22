@@ -1,17 +1,22 @@
 import type { IType } from "models/items/types/type";
 import type { TypesFilters } from "models/items/types/typesFilters";
-import type mongoose from "mongoose";
+import mongoose from "mongoose";
 import { Type } from "schemas/items/type";
 import { startsWith } from "utils/reqex/regexUtils";
 
 class TypesService {
   public async getAllTypes(filters: TypesFilters) {
-    const { page, pageSize, name } = filters;
+    const { page, pageSize, name, exclude } = filters;
 
     const filter: mongoose.FilterQuery<IType> = {};
 
     if (name) {
       filter.name = startsWith(name);
+    }
+    if (exclude) {
+      filter._id = {
+        $nin: exclude.map((id) => new mongoose.Types.ObjectId(id)),
+      };
     }
 
     const items = await Type.aggregate([

@@ -9,6 +9,7 @@ class TypesController {
       page = "1",
       pageSize = "10",
       name,
+      exclude,
       ids,
     } = req.query as TypesFiltersRequest;
     if (ids) {
@@ -19,6 +20,7 @@ class TypesController {
         page: Number(page),
         pageSize: Number(pageSize),
         name,
+        exclude: exclude ? stringToArray(exclude) : undefined,
       });
       res.json(types);
     }
