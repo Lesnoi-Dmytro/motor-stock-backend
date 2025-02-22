@@ -4,6 +4,7 @@ import { Router } from "express";
 import { authedMiddleware } from "middleware/authedMiddleware";
 import { queryValidationMiddleware } from "middleware/validationMiddleware";
 import companyItemsRoute from "routes/items/companyItems/routes";
+import { itemsByCompanyFilterSchema } from "validation/items/itemsByCompanyFiltersValidationSchema";
 import { itemsFilterSchema } from "validation/items/itemsFiltersValidationSchema";
 import { typesFilterSchema } from "validation/items/types/typesFiltersValidationSchema";
 
@@ -87,6 +88,83 @@ itemsRoute.get(
   "/",
   queryValidationMiddleware(itemsFilterSchema),
   itemsController.getItems
+);
+
+/**
+ * @swagger
+ * /api/items/company/{id}:
+ *   get:
+ *     tags: [Items]
+ *     summary: Items by company
+ *     description: Get paginated items from a company, filtered by query
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         description: Company id
+ *         type: string
+ *         example: 123abc
+ *       - in: query
+ *         name: page
+ *         type: integer
+ *         description: Page number
+ *         example: 1
+ *       - in: query
+ *         name: pageSize
+ *         type: integer
+ *         description: Page size
+ *         example: 10
+ *       - in: query
+ *         name: article
+ *         type: string
+ *         description: Item article prefix
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 items:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         example: 123abc
+ *                       name:
+ *                         type: string
+ *                         example: Fuel Injector
+ *                       article:
+ *                         type: string
+ *                         example: FI-001
+ *                       description:
+ *                         type: string
+ *                         example: A fuel injector that injects fuel into an engine's combustion chamber.
+ *                       type:
+ *                         type: object
+ *                         properties:
+ *                           _id:
+ *                             type: string
+ *                             example: 123abc
+ *                           name:
+ *                             type: string
+ *                             example: Fuel Injector
+ *                       createdAt:
+ *                         type: date
+ *                         example: 2025-01-01T00:00:00.000Z
+ *                       updatedAt:
+ *                         type: date
+ *                         example: 2025-01-01T00:00:00.000Z
+ *                 totalItems:
+ *                   type: integer
+ *                   example: 10
+ */
+itemsRoute.get(
+  "/company/:id",
+  queryValidationMiddleware(itemsByCompanyFilterSchema),
+  itemsController.getItemsByCompany
 );
 
 /**

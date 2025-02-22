@@ -13,7 +13,16 @@ class CompanyItemsService {
   public async getItems(
     filters: CompanyItemFilters
   ): Promise<PaginationResponse<ICompanyItem>> {
-    const { page, pageSize, search, companies, types } = filters;
+    const {
+      page,
+      pageSize,
+      search,
+      companies,
+      companyName,
+      types,
+      items: itemIds,
+      article,
+    } = filters;
 
     const filter: mongoose.FilterQuery<ICompanyItem> = {};
     if (search) {
@@ -30,6 +39,21 @@ class CompanyItemsService {
     if (types) {
       filter["item.type"] = {
         $in: types.map((type) => new mongoose.Types.ObjectId(type)),
+      };
+    }
+    if (companyName) {
+      filter["company.name"] = {
+        $regex: startsWith(companyName),
+      };
+    }
+    if (itemIds) {
+      filter["item._id"] = {
+        $in: itemIds.map((item) => new mongoose.Types.ObjectId(item)),
+      };
+    }
+    if (article) {
+      filter["item.article"] = {
+        $regex: startsWith(article),
       };
     }
 

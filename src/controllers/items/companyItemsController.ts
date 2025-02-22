@@ -18,7 +18,10 @@ class CompanyItemsController {
         pageSize: Number(query.pageSize) || 12,
         search: query.search,
         companies: stringOrUndefinedToArray(query.companies),
+        companyName: query.companyName,
         types: stringOrUndefinedToArray(query.types),
+        items: stringOrUndefinedToArray(query.items),
+        article: query.article,
       };
 
       const user = (req as IAuthedRequest).user;

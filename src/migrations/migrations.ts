@@ -6,6 +6,7 @@ import { initTypes } from "migrations/migrations/5__init_item_types";
 import { initItems } from "migrations/migrations/6__init_items";
 import { initCompanyItems } from "migrations/migrations/7__init_company_items";
 import { initSupplies } from "migrations/migrations/8__init_supplies";
+import { addAdditionalCompany } from "migrations/migrations/9__add_additional_company";
 
 interface Migartion {
   id: number;
@@ -44,5 +45,9 @@ export const migrations: Migartion[] = [
   {
     id: 8,
     migration: initSupplies,
+  },
+  {
+    id: 9,
+    migration: addAdditionalCompany,
   },
 ];

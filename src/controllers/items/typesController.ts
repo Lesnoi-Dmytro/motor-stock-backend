@@ -12,6 +12,7 @@ class TypesController {
       exclude,
       ids,
     } = req.query as TypesFiltersRequest;
+
     if (ids) {
       const types = await typesService.getTypesByIds(stringToArray(ids));
       res.json({ items: types, totalItems: types.length });

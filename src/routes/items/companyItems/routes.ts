@@ -47,10 +47,25 @@ companyItemsRoute.use("/supplies", suppliesRoute);
  *         description: Company ids
  *         example: '67b3bcb7afcacfc63f4417c7,67b3bcb7afcacfc63f4417c8'
  *       - in: query
+ *         name: companyName
+ *         type: string
+ *         description: Company name prefix
+ *         example: 'Auto'
+ *       - in: query
  *         name: types
  *         type: string
  *         description: Item types ids
  *         example: '67b3bcccdba1d1ec070c5815,67b3bcccdba1d1ec070c5819'
+ *       - in: query
+ *         name: items
+ *         type: string
+ *         description: Item ids
+ *         example: '67b3bcccdba1d1ec070c5815,67b3bcccdba1d1ec070c5819'
+ *       - in: query
+ *         name: article
+ *         type: string
+ *         description: Item article prefix
+ *         example: 'FI'
  *     responses:
  *       '200':
  *         description: Success response

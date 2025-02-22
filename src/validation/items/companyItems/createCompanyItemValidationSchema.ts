@@ -1,12 +1,10 @@
-import mongoose from "mongoose";
+import { objectId } from "utils/validation/objectIdUtil";
 import { createItemSchema } from "validation/items/createItemValidationSchema";
 import { z } from "zod";
 
 export const createCompanyItemSchema = z
   .object({
-    company: z
-      .string()
-      .refine((value) => mongoose.Types.ObjectId.isValid(value)),
+    company: objectId,
     item: z.union([
       z.object({
         article: z.string(),
