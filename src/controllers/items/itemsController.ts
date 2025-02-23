@@ -20,7 +20,7 @@ class ItemsController {
     res.json(itemsPage);
   }
 
-  public getItemsByCompany(req: Request, res: Response) {
+  public async getItemsByCompany(req: Request, res: Response) {
     const { id } = req.params;
     const {
       page = "1",
@@ -28,7 +28,7 @@ class ItemsController {
       article,
     } = req.query as ItemsByCompanyFiltersRequest;
 
-    const itemsPage = itemsService.getItemsByCompany(id, {
+    const itemsPage = await itemsService.getItemsByCompany(id, {
       page: Number(page),
       pageSize: Number(pageSize),
       article,

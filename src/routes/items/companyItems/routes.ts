@@ -241,6 +241,77 @@ companyItemsRoute.post(
   bodyValidationMiddleware(createCompanyItemSchema),
   companyItemsController.createItem
 );
+/**
+ * @swagger
+ * /api/items/company-items/company/{companyId}/item/{itemId}:
+ *   get:
+ *     tags: [CompanyItems]
+ *     summary: Company Item by Company and Item
+ *     description: Get company item by company id and item id
+ *     parameters:
+ *      - in: path
+ *        name: companyId
+ *        description: Company id
+ *        required: true
+ *        type: string
+ *        example: 123456abcdef
+ *      - in: path
+ *        name: itemId
+ *        description: Item id
+ *        required: true
+ *        type: string
+ *        example: 123456abcdef
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 item:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 company:
+ *                   type: string
+ *                   example: 123456abcdef
+ *                 quantity:
+ *                   type: number
+ *                   example: 10
+ *                 priceHistory:
+ *                   type: array
+ *                   items: object
+ *                   properties:
+ *                     price:
+ *                       type: number
+ *                       example: 100
+ *                     date:
+ *                       type: date
+ *                       example: 2025-01-01T00:00:00.000Z
+ *                 createdAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
+ *                 updatedAt:
+ *                   type: date
+ *                   example: 2025-01-01T00:00:00.000Z
+ *       '400':
+ *         description: Item already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Item not found
+ */
+companyItemsRoute.get(
+  "/company/:companyId/item/:itemId",
+  companyItemsController.getCompanyItemByCompanyAndItem
+);
 
 /**
  * @swagger

@@ -81,7 +81,7 @@ class ItemsService {
 
     const items = await CompanyItem.aggregate([
       {
-        $match: { item: new mongoose.Types.ObjectId(id) },
+        $match: { company: new mongoose.Types.ObjectId(id) },
       },
       {
         $group: {
@@ -91,10 +91,13 @@ class ItemsService {
       {
         $lookup: {
           from: "items",
-          localField: "item",
+          localField: "_id",
           foreignField: "_id",
           as: "item",
         },
+      },
+      {
+        $unwind: "$item",
       },
       {
         $match: filter,
@@ -107,8 +110,12 @@ class ItemsService {
       },
     ]);
 
+    console.log(items[0].data[0]);
+
     return {
-      items: items[0].data,
+      items: items[0].data.map(
+        (item: { item: IItem; _id: string }) => item.item
+      ),
       totalItems: items[0].metadata[0]?.totalItems || 0,
     };
   }

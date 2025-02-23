@@ -1,5 +1,6 @@
 import type { ICompaniesByItemFilters } from "models/companies/companiesByItemFilters";
 import type { ICompaniesFilters } from "models/companies/companiesFilters";
+import type { ICompany } from "models/companies/company";
 import type { CreateCompanyRequest } from "models/companies/createCompanyRequest";
 import type { ICompanyItem } from "models/items/companyItem/companyItem";
 import mongoose from "mongoose";
@@ -73,10 +74,13 @@ class CompaniesService {
       {
         $lookup: {
           from: "companies",
-          localField: "company",
+          localField: "_id",
           foreignField: "_id",
           as: "company",
         },
+      },
+      {
+        $unwind: "$company",
       },
       {
         $match: filter,
@@ -90,7 +94,10 @@ class CompaniesService {
     ]);
 
     return {
-      items: items[0].data,
+      items: items[0].data.map(
+        (item: { company: ICompany; _id: mongoose.Types.ObjectId }) =>
+          item.company
+      ),
       totalItems: items[0].metadata[0]?.totalItems || 0,
     };
   }

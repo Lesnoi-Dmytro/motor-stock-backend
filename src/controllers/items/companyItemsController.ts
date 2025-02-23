@@ -56,6 +56,26 @@ class CompanyItemsController {
     }
   }
 
+  public async getCompanyItemByCompanyAndItem(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { companyId, itemId } = req.params;
+
+      const item = await companyItemsService.getCompanyItemByCompanyAndItem(
+        companyId,
+        itemId
+      );
+
+      res.json(item);
+    } catch (err: unknown) {
+      console.error(err);
+      next(createHttpError(400, (err as Error).message));
+    }
+  }
+
   public async deleteItem(req: Request, res: Response, next: NextFunction) {
     try {
       const id = req.params.id;

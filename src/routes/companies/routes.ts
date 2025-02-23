@@ -142,7 +142,7 @@ companiesRoute.get(
  *                   example: 10
  */
 companiesRoute.get(
-  "/items/:id",
+  "/item/:id",
   queryValidationMiddleware(companiesByItemFilterSchema),
   companiesController.getCompaniesByItem
 );

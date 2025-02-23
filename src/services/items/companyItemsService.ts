@@ -115,6 +115,22 @@ class CompanyItemsService {
     return item;
   }
 
+  public async getCompanyItemByCompanyAndItem(
+    companyId: string,
+    itemId: string
+  ): Promise<ICompanyItem | null> {
+    const item = await CompanyItem.findOne({
+      item: itemId,
+      company: companyId,
+    }).lean();
+
+    if (!item) {
+      throw new Error("Item not found");
+    }
+
+    return item;
+  }
+
   public async deleteItem(id: string) {
     const res = await CompanyItem.deleteOne({ _id: id }).lean();
     if (res.deletedCount === 0) {
