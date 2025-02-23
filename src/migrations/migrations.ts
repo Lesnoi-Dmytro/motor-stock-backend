@@ -1,3 +1,4 @@
+import { additionalPriceHistory } from "@/migrations/migrations/10__additional_price_history";
 import { initUser } from "@/migrations/migrations/1__init_user";
 import { updateUser } from "@/migrations/migrations/2__update_user";
 import { initCompanies } from "@/migrations/migrations/3__init_companies";
@@ -49,5 +50,9 @@ export const migrations: Migartion[] = [
   {
     id: 9,
     migration: addAdditionalCompany,
+  },
+  {
+    id: 10,
+    migration: additionalPriceHistory,
   },
 ];
