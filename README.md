@@ -2,6 +2,13 @@
 
 This project is a backend part of a motor stock management system. Main functionality includes managing company car details, supplier companies information, details supplies and price changes.
 
+## Log In
+
+To log in, use the following credentials:
+
+- Username: `johndoe@example.com`
+- Password: `1234test`
+
 ## Development server
 
 To start a local development server, run:
