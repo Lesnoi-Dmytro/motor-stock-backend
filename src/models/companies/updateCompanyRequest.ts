@@ -1,4 +1,4 @@
-export interface ICreateCompanyRequest {
+export interface IUpdateCompanyRequest {
   name: string;
   address: string;
   phone: string;
