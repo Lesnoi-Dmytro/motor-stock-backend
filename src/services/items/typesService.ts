@@ -1,8 +1,8 @@
-import type { IType } from "models/items/types/type";
-import type { TypesFilters } from "models/items/types/typesFilters";
+import type { IType } from "@/models/items/types/type";
+import type { TypesFilters } from "@/models/items/types/typesFilters";
 import mongoose from "mongoose";
-import { Type } from "schemas/items/type";
-import { startsWith } from "utils/reqex/regexUtils";
+import { Type } from "@/schemas/items/Type";
+import { startsWith } from "@/utils/reqex/regexUtils";
 
 class TypesService {
   public async getAllTypes(filters: TypesFilters) {

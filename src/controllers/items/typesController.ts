@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import type { TypesFiltersRequest } from "models/items/types/typesFilters";
-import typesService from "services/items/typesService";
-import { stringToArray } from "utils/arrays/stringToArray";
+import type { TypesFiltersRequest } from "@/models/items/types/typesFilters";
+import typesService from "@/services/items/typesService";
+import { stringToArray } from "@/utils/arrays/stringToArray";
 
 class TypesController {
   public async getAllTypes(req: Request, res: Response) {

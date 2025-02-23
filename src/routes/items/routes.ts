@@ -1,12 +1,12 @@
-import itemsController from "controllers/items/itemsController";
-import typesController from "controllers/items/typesController";
+import itemsController from "@/controllers/items/itemsController";
+import typesController from "@/controllers/items/typesController";
 import { Router } from "express";
-import { authedMiddleware } from "middleware/authedMiddleware";
-import { queryValidationMiddleware } from "middleware/validationMiddleware";
-import companyItemsRoute from "routes/items/companyItems/routes";
-import { itemsByCompanyFilterSchema } from "validation/items/itemsByCompanyFiltersValidationSchema";
-import { itemsFilterSchema } from "validation/items/itemsFiltersValidationSchema";
-import { typesFilterSchema } from "validation/items/types/typesFiltersValidationSchema";
+import { authedMiddleware } from "@/middleware/authedMiddleware";
+import { queryValidationMiddleware } from "@/middleware/validationMiddleware";
+import companyItemsRoute from "@/routes/items/companyItems/routes";
+import { itemsByCompanyFilterSchema } from "@/validation/items/itemsByCompanyFiltersValidationSchema";
+import { itemsFilterSchema } from "@/validation/items/itemsFiltersValidationSchema";
+import { typesFilterSchema } from "@/validation/items/types/typesFiltersValidationSchema";
 
 /**
  * @swagger

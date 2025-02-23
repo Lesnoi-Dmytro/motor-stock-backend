@@ -1,4 +1,4 @@
-import type { Paginated, PaginatedRequest } from "models/pagination";
+import type { Paginated, PaginatedRequest } from "@/models/pagination";
 
 export interface ICompaniesFiltersRequest extends PaginatedRequest {
   name?: string;

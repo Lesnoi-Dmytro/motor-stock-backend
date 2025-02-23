@@ -1,4 +1,4 @@
-import { migrations } from "migrations/migrations";
+import { migrations } from "@/migrations/migrations";
 import mongoose from "mongoose";
 
 async function migrate() {

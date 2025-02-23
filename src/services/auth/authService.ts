@@ -1,6 +1,6 @@
-import jwtService from "services/auth/jwtService";
-import passwordEncodeService from "services/auth/passwordEncodeService";
-import usersService from "services/users/usersService";
+import jwtService from "@/services/auth/jwtService";
+import passwordEncodeService from "@/services/auth/passwordEncodeService";
+import usersService from "@/services/users/usersService";
 
 class AuthService {
   public async login(email: string, password: string): Promise<string> {

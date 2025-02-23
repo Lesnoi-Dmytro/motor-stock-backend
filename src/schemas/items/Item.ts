@@ -1,6 +1,6 @@
-import type { IItem } from "models/items/item";
+import type { IItem } from "@/models/items/item";
 import mongoose from "mongoose";
-import { Type } from "schemas/items/type";
+import { Type } from "@/schemas/items/Type";
 
 const itemSchema = new mongoose.Schema<IItem>(
   {

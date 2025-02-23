@@ -1,13 +1,13 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import type { IAuthedRequest } from "models/auth/authedRequest";
+import type { IAuthedRequest } from "@/models/auth/authedRequest";
 import type {
   CompanyItemFilters,
   CompanyItemFiltersRequest,
-} from "models/items/companyItem/companyItemFilters";
-import { Company } from "schemas/companies/company";
-import companyItemsService from "services/items/companyItemsService";
-import { stringOrUndefinedToArray } from "utils/arrays/stringToArray";
+} from "@/models/items/companyItem/companyItemFilters";
+import { Company } from "@/schemas/companies/Company";
+import companyItemsService from "@/services/items/companyItemsService";
+import { stringOrUndefinedToArray } from "@/utils/arrays/stringToArray";
 
 class CompanyItemsController {
   public async getItems(req: Request, res: Response, next: NextFunction) {

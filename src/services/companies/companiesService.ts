@@ -1,12 +1,12 @@
-import type { ICompaniesByItemFilters } from "models/companies/companiesByItemFilters";
-import type { ICompaniesFilters } from "models/companies/companiesFilters";
-import type { ICompany } from "models/companies/company";
-import type { CreateCompanyRequest } from "models/companies/createCompanyRequest";
-import type { ICompanyItem } from "models/items/companyItem/companyItem";
+import type { ICompaniesByItemFilters } from "@/models/companies/companiesByItemFilters";
+import type { ICompaniesFilters } from "@/models/companies/companiesFilters";
+import type { ICompany } from "@/models/companies/company";
+import type { CreateCompanyRequest } from "@/models/companies/createCompanyRequest";
+import type { ICompanyItem } from "@/models/items/companyItem/companyItem";
 import mongoose from "mongoose";
-import { Company } from "schemas/companies/company";
-import { CompanyItem } from "schemas/items/companyItem";
-import { startsWith } from "utils/reqex/regexUtils";
+import { Company } from "@/schemas/companies/Company";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
+import { startsWith } from "@/utils/reqex/regexUtils";
 
 class CompaniesService {
   public async getAllCompanies(filters: ICompaniesFilters) {

@@ -1,8 +1,8 @@
-import { dummyCompanies } from "migrations/migrations/3__init_companies";
-import { basicItems } from "migrations/migrations/6__init_items";
-import { Company } from "schemas/companies/company";
-import { CompanyItem } from "schemas/items/companyItem";
-import { Item } from "schemas/items/item";
+import { dummyCompanies } from "@/migrations/migrations/3__init_companies";
+import { basicItems } from "@/migrations/migrations/6__init_items";
+import { Company } from "@/schemas/companies/Company";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
+import { Item } from "@/schemas/items/Item";
 
 export async function initCompanyItems() {
   const updatedItems = await Promise.all(

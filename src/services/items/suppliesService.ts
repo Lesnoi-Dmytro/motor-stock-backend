@@ -1,10 +1,10 @@
-import type { ICreateSupplyRequest } from "models/items/companyItem/supplies/createSupplyRequest";
-import type { ISuppliesFilters } from "models/items/companyItem/supplies/suppliesFilters";
-import type { ISupply } from "models/items/companyItem/supplies/supply";
-import type { IUpdateSupplyRequest } from "models/items/companyItem/supplies/updateSupplyRequest";
+import type { ICreateSupplyRequest } from "@/models/items/companyItem/supplies/createSupplyRequest";
+import type { ISuppliesFilters } from "@/models/items/companyItem/supplies/suppliesFilters";
+import type { ISupply } from "@/models/items/companyItem/supplies/supply";
+import type { IUpdateSupplyRequest } from "@/models/items/companyItem/supplies/updateSupplyRequest";
 import mongoose from "mongoose";
-import { CompanyItem } from "schemas/items/companyItem";
-import { Supply } from "schemas/items/supply";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
+import { Supply } from "@/schemas/items/Supply";
 
 class SuppliesService {
   public async getSupplies(query: ISuppliesFilters) {

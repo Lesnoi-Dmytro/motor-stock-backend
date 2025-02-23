@@ -1,14 +1,14 @@
-import type { ItemFilters } from "models/items/itemFilters";
-import { Item } from "schemas/items/item";
-import type { IItem } from "models/items/item";
-import { startsWith } from "utils/reqex/regexUtils";
+import type { ItemFilters } from "@/models/items/itemFilters";
+import { Item } from "@/schemas/items/Item";
+import type { IItem } from "@/models/items/item";
+import { startsWith } from "@/utils/reqex/regexUtils";
 import mongoose from "mongoose";
-import type { PaginationResponse } from "models/pagination";
-import typesService from "services/items/typesService";
-import type { ICreateItemRequest } from "models/items/itemCreateRequest";
-import type { ItemsByCompanyFilters } from "models/items/itemsByCompanyFilters";
-import type { ICompanyItem } from "models/items/companyItem/companyItem";
-import { CompanyItem } from "schemas/items/companyItem";
+import type { PaginationResponse } from "@/models/pagination";
+import typesService from "@/services/items/typesService";
+import type { ICreateItemRequest } from "@/models/items/itemCreateRequest";
+import type { ItemsByCompanyFilters } from "@/models/items/itemsByCompanyFilters";
+import type { ICompanyItem } from "@/models/items/companyItem/companyItem";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
 
 class ItemsService {
   public async getItems(

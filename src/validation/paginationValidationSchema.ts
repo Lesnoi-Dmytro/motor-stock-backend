@@ -1,7 +1,7 @@
 import {
   validateStringInteger,
   validateStringPositiveInteger,
-} from "utils/validation/stringIntegerUtil";
+} from "@/utils/validation/stringIntegerUtil";
 import { z } from "zod";
 
 export const paginationSchema = z.object({

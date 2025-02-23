@@ -1,4 +1,4 @@
-import { Type } from "schemas/items/type";
+import { Type } from "@/schemas/items/Type";
 
 export async function initTypes() {
   await Promise.all(

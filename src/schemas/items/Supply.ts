@@ -1,6 +1,6 @@
-import type { ISupply } from "models/items/companyItem/supplies/supply";
+import type { ISupply } from "@/models/items/companyItem/supplies/supply";
 import mongoose from "mongoose";
-import { CompanyItem } from "schemas/items/companyItem";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
 
 const supplySchema = new mongoose.Schema<ISupply>(
   {

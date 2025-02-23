@@ -1,4 +1,4 @@
-import type { ICompany } from "models/companies/company";
+import type { ICompany } from "@/models/companies/company";
 import mongoose from "mongoose";
 
 const companySchema = new mongoose.Schema<ICompany>(

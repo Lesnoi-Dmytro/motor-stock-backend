@@ -1,7 +1,7 @@
-import { settings } from "config/settings";
+import { settings } from "@/config/settings";
 import jwt from "jsonwebtoken";
-import type { ICompany } from "models/companies/company";
-import { UserRole, type IUser } from "models/users/user";
+import type { ICompany } from "@/models/companies/company";
+import { UserRole, type IUser } from "@/models/users/user";
 
 class JwtService {
   private readonly jwtPrivateKey = settings.jwt_private_key;

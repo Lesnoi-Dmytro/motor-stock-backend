@@ -1,13 +1,13 @@
+import "@/migrations/migrate";
+import "@/config/db";
+
 import express from "express";
 
-import { settings } from "config/settings";
-import { corsConfig } from "config/corsConfig";
-import { errorHandlingMiddleware } from "middleware/errorHandlingMiddleware";
-import routes from "routes/routes";
-import { swaggerDocs } from "config/swagger";
-
-import "./config/db";
-import "./migrations/migrate";
+import routes from "@/routes/routes";
+import { settings } from "@/config/settings";
+import { corsConfig } from "@/config/corsConfig";
+import { swaggerDocs } from "@/config/swagger";
+import { errorHandlingMiddleware } from "@/middleware/errorHandlingMiddleware";
 
 const app = express();
 const PORT = settings.port;

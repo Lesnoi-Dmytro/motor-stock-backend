@@ -1,4 +1,4 @@
-import { settings } from "config/settings";
+import { settings } from "@/config/settings";
 import mongoose from "mongoose";
 
 mongoose

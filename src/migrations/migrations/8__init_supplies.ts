@@ -1,7 +1,7 @@
-import { basicCompanyItems } from "migrations/migrations/7__init_company_items";
-import { CompanyItem } from "schemas/items/companyItem";
-import { Supply } from "schemas/items/supply";
-import companyItemsService from "services/items/companyItemsService";
+import { basicCompanyItems } from "@/migrations/migrations/7__init_company_items";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
+import { Supply } from "@/schemas/items/Supply";
+import companyItemsService from "@/services/items/companyItemsService";
 
 export async function initSupplies() {
   const updatedSupplies = await Promise.all(

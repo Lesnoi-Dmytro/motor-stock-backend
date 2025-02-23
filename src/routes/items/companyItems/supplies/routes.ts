@@ -1,14 +1,14 @@
-import suppliesController from "controllers/items/suppliesController";
+import suppliesController from "@/controllers/items/suppliesController";
 import { Router } from "express";
 import {
   bodyValidationMiddleware,
   queryValidationMiddleware,
-} from "middleware/validationMiddleware";
+} from "@/middleware/validationMiddleware";
 import {
   createSupplyRequestSchema,
   updateSupplyRequestSchema,
-} from "validation/items/companyItems/supplies/createSupplyRequestValidationSchema";
-import { suppliesFilterSchema } from "validation/items/companyItems/supplies/suppliesFilterValidationSchema";
+} from "@/validation/items/companyItems/supplies/createSupplyRequestValidationSchema";
+import { suppliesFilterSchema } from "@/validation/items/companyItems/supplies/suppliesFilterValidationSchema";
 
 /**
  * @swagger

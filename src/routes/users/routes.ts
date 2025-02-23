@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authedMiddleware } from "middleware/authedMiddleware";
+import { authedMiddleware } from "@/middleware/authedMiddleware";
 
 /**
  * @swagger

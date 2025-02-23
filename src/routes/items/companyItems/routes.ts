@@ -1,13 +1,13 @@
-import companyItemsController from "controllers/items/companyItemsController";
+import companyItemsController from "@/controllers/items/companyItemsController";
 import { Router } from "express";
 import {
   bodyValidationMiddleware,
   queryValidationMiddleware,
-} from "middleware/validationMiddleware";
-import suppliesRoute from "routes/items/companyItems/supplies/routes";
-import { companyItemsFilterSchema } from "validation/items/companyItems/companyItemsFilterValidationSchema";
-import { createCompanyItemSchema } from "validation/items/companyItems/createCompanyItemValidationSchema";
-import { createPriceHistoryItemRequestSchema } from "validation/items/companyItems/createPriceHistoryItemRequestValidationSchema";
+} from "@/middleware/validationMiddleware";
+import suppliesRoute from "@/routes/items/companyItems/supplies/routes";
+import { companyItemsFilterSchema } from "@/validation/items/companyItems/companyItemsFilterValidationSchema";
+import { createCompanyItemSchema } from "@/validation/items/companyItems/createCompanyItemValidationSchema";
+import { createPriceHistoryItemRequestSchema } from "@/validation/items/companyItems/createPriceHistoryItemRequestValidationSchema";
 
 /**
  * @swagger

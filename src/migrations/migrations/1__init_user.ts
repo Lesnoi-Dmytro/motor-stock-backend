@@ -1,5 +1,5 @@
-import { User } from "schemas/users/user";
-import passwordEncodeService from "services/auth/passwordEncodeService";
+import { User } from "@/schemas/users/User";
+import passwordEncodeService from "@/services/auth/passwordEncodeService";
 
 export async function initUser() {
   await new User({
