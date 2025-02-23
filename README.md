@@ -1,4 +1,4 @@
-# MotorStockFrontend
+# MotorStockBackend
 
 This project is a backend part of a motor stock management system. Main functionality includes managing company car details, supplier companies information, details supplies and price changes.
 
