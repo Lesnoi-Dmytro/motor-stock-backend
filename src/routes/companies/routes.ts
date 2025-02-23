@@ -285,10 +285,6 @@ companiesRoute.put(
  *                   type: string
  *                   example: Company deleted
  */
-companiesRoute.delete(
-  "/:id",
-  bodyValidationMiddleware(updateCompanySchema),
-  companiesController.getAllCompanies
-);
+companiesRoute.delete("/:id", companiesController.deleteCompany);
 
 export default companiesRoute;
