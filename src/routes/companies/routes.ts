@@ -256,7 +256,7 @@ companiesRoute.post(
 companiesRoute.put(
   "/:id",
   bodyValidationMiddleware(updateCompanySchema),
-  companiesController.getAllCompanies
+  companiesController.updateCompany
 );
 
 /**
