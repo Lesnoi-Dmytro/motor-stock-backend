@@ -8,5 +8,6 @@ export interface IAuthedRequest extends Request {
     firstName: string;
     lastName: string;
     role: UserRole;
+    company?: string;
   };
 }

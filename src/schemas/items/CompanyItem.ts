@@ -1,4 +1,4 @@
-import type { ICompanyItem } from "models/items/companyItem";
+import type { ICompanyItem } from "models/items/companyItem/companyItem";
 import mongoose from "mongoose";
 import { Company } from "schemas/companies/company";
 import { Item } from "schemas/items/item";
@@ -7,12 +7,12 @@ const companyItemSchema = new mongoose.Schema<ICompanyItem>(
   {
     item: {
       type: mongoose.Types.ObjectId,
-      ref: Item.name,
+      ref: Item.modelName,
       required: true,
     },
     company: {
       type: mongoose.Types.ObjectId,
-      ref: Company.name,
+      ref: Company.modelName,
       required: true,
     },
     quantity: {
@@ -24,6 +24,14 @@ const companyItemSchema = new mongoose.Schema<ICompanyItem>(
         {
           price: Number,
           date: Date,
+          createdAt: {
+            type: Date,
+            default: Date.now,
+          },
+          updatedAt: {
+            type: Date,
+            default: Date.now,
+          },
         },
       ],
       required: true,

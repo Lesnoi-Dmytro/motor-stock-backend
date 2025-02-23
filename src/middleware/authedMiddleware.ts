@@ -16,6 +16,7 @@ export function authedMiddleware(roles?: UserRole[]) {
         firstName: jwtPayload.firstName!,
         lastName: jwtPayload.lastName!,
         role: jwtPayload.role!,
+        company: jwtPayload.company,
       };
       if (roles && !roles.includes(user.role)) {
         next(createHttpError(403, "Forbidden"));

@@ -11,6 +11,7 @@ const itemSchema = new mongoose.Schema<IItem>(
     article: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
@@ -18,7 +19,7 @@ const itemSchema = new mongoose.Schema<IItem>(
     },
     type: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: Type.name,
+      ref: Type.modelName,
       required: true,
     },
   },

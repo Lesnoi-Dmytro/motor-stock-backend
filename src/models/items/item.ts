@@ -1,4 +1,4 @@
-import type { IType } from "models/items/type";
+import type { IType } from "models/items/types/type";
 import type mongoose from "mongoose";
 
 export interface IItem {
@@ -7,4 +7,6 @@ export interface IItem {
   article: string;
   description: string;
   type: mongoose.Types.ObjectId | IType;
+  createdAt: Date;
+  updatedAt: Date;
 }

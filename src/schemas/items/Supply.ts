@@ -1,4 +1,4 @@
-import type { ISupply } from "models/items/supply";
+import type { ISupply } from "models/items/companyItem/supplies/supply";
 import mongoose from "mongoose";
 import { CompanyItem } from "schemas/items/companyItem";
 
@@ -6,7 +6,7 @@ const supplySchema = new mongoose.Schema<ISupply>(
   {
     item: {
       type: mongoose.Types.ObjectId,
-      ref: CompanyItem.name,
+      ref: CompanyItem.modelName,
       required: true,
     },
     quantity: {

@@ -13,5 +13,5 @@ export const initialUser = {
   lastName: "Doe",
   email: "johndoe@example.com",
   role: "EMPLOYEE",
-  password: "password",
+  password: "1234pass",
 };
