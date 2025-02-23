@@ -207,8 +207,8 @@ companiesRoute.post(
  * /api/companies/{id}:
  *   put:
  *     tags: [Companies]
- *     summary: Create company
- *     description: Create a new company
+ *     summary: Update company
+ *     description: Update a company
  *     parameters:
  *       - in: path
  *         name: id
@@ -254,6 +254,38 @@ companiesRoute.post(
  *                   example: +380123456789
  */
 companiesRoute.put(
+  "/:id",
+  bodyValidationMiddleware(updateCompanySchema),
+  companiesController.getAllCompanies
+);
+
+/**
+ * @swagger
+ * /api/companies/{id}:
+ *   delete:
+ *     tags: [Companies]
+ *     summary: Delete company
+ *     description: Delete a company
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Company id
+ *         type: string
+ *         example: 123abc
+ *     responses:
+ *       '200':
+ *         description: Success response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Company deleted
+ */
+companiesRoute.delete(
   "/:id",
   bodyValidationMiddleware(updateCompanySchema),
   companiesController.getAllCompanies

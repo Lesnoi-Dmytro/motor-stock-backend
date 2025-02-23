@@ -74,6 +74,17 @@ class CompaniesController {
       next(createHttpError(400, (error as Error).message));
     }
   }
+
+  public async deleteCompany(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      await companiesService.deleteCompany(id);
+      res.json({ message: "Company deleted" });
+    } catch (error) {
+      console.error(error);
+      next(createHttpError(400, (error as Error).message));
+    }
+  }
 }
 
 const companiesController = new CompaniesController();

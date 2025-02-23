@@ -120,6 +120,13 @@ class CompaniesService {
       totalItems: items[0].metadata[0]?.totalItems || 0,
     };
   }
+
+  public async deleteCompany(id: string) {
+    const company = await Company.deleteOne({ _id: id });
+    if (!company.deletedCount) {
+      throw new Error("Company not found");
+    }
+  }
 }
 
 const companiesService = new CompaniesService();
