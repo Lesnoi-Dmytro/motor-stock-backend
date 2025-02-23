@@ -5,7 +5,7 @@ const corsOptions: CorsOptions = {
   origin: settings.frontend_url,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "Timeout"],
 };
 
 export const corsConfig = cors(corsOptions);
