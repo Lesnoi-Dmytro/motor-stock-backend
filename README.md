@@ -65,4 +65,4 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## Deployment
 
-This application is deployed on Firebase. You can access the deployed version by visiting [https://motor-stock-5ebdd.web.app](https://motor-stock-5ebdd.web.app).
+This application is deployed on Rander. You can access the deployed version by visiting [https://motor-stock-backend.onrender.com/api-docs](https://motor-stock-backend.onrender.com/api-docs).
