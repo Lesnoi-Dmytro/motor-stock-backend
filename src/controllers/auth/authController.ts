@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import type { ILoginRequest } from "models/auth/loginRequest";
-import authService from "services/auth/authService";
-import usersService from "services/users/usersService";
+import type { ILoginRequest } from "@/models/auth/loginRequest";
+import authService from "@/services/auth/authService";
+import usersService from "@/services/users/usersService";
 
 class AuthController {
   public async signIn(req: Request, res: Response, next: NextFunction) {

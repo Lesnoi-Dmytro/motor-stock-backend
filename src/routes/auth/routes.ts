@@ -1,7 +1,7 @@
-import authController from "controllers/auth/authController";
+import authController from "@/controllers/auth/authController";
 import { Router } from "express";
-import { bodyValidationMiddleware } from "middleware/validationMiddleware";
-import { signInRequestSchema } from "validation/auth/signInValidationSchema";
+import { bodyValidationMiddleware } from "@/middleware/validationMiddleware";
+import { signInRequestSchema } from "@/validation/auth/signInValidationSchema";
 
 /**
  * @swagger

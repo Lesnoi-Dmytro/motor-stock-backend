@@ -1,4 +1,4 @@
-import type { ICompany } from "models/companies/company";
+import type { ICompany } from "@/models/companies/company";
 import type mongoose from "mongoose";
 
 export interface IUser {

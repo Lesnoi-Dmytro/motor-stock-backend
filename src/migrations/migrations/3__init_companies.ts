@@ -1,4 +1,4 @@
-import { Company } from "schemas/companies/company";
+import { Company } from "@/schemas/companies/Company";
 
 export async function initCompanies() {
   await Promise.all(

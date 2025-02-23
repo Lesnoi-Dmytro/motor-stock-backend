@@ -1,5 +1,5 @@
-import { objectId } from "utils/validation/objectIdUtil";
-import { createItemSchema } from "validation/items/createItemValidationSchema";
+import { objectId } from "@/utils/validation/objectIdUtil";
+import { createItemSchema } from "@/validation/items/createItemValidationSchema";
 import { z } from "zod";
 
 export const createCompanyItemSchema = z

@@ -1,13 +1,13 @@
-import type { ICompanyItem } from "models/items/companyItem/companyItem";
+import type { ICompanyItem } from "@/models/items/companyItem/companyItem";
 import { PaginationResponse } from "./../../models/pagination";
-import type { CompanyItemFilters } from "models/items/companyItem/companyItemFilters";
+import type { CompanyItemFilters } from "@/models/items/companyItem/companyItemFilters";
 import mongoose from "mongoose";
-import { CompanyItem } from "schemas/items/companyItem";
-import { startsWith } from "utils/reqex/regexUtils";
-import type { createPriceHistoryItemRequest } from "models/items/companyItem/createPriceHistoryRequest";
-import itemsService from "services/items/itemsService";
-import type { ICreateCompanyItemRequest } from "models/items/companyItem/createCompanyItemRequest";
-import suppliesService from "services/items/suppliesService";
+import { CompanyItem } from "@/schemas/items/CompanyItem";
+import { startsWith } from "@/utils/reqex/regexUtils";
+import type { createPriceHistoryItemRequest } from "@/models/items/companyItem/createPriceHistoryRequest";
+import itemsService from "@/services/items/itemsService";
+import type { ICreateCompanyItemRequest } from "@/models/items/companyItem/createCompanyItemRequest";
+import suppliesService from "@/services/items/suppliesService";
 
 class CompanyItemsService {
   public async getItems(

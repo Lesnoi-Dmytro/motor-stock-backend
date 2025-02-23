@@ -1,4 +1,4 @@
-import { Company } from "schemas/companies/company";
+import { Company } from "@/schemas/companies/Company";
 
 export async function addAdditionalCompany() {
   await new Company(dummyNewCompany).save({ validateBeforeSave: false });

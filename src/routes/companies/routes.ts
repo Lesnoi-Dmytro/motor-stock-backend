@@ -1,10 +1,10 @@
-import companiesController from "controllers/companies/companiesController";
+import companiesController from "@/controllers/companies/companiesController";
 import { Router } from "express";
-import { authedMiddleware } from "middleware/authedMiddleware";
-import { queryValidationMiddleware } from "middleware/validationMiddleware";
-import { UserRole } from "models/users/user";
-import { companiesByItemFilterSchema } from "validation/companies/companiesByItemFiltersValidationSchema";
-import { companiesFilterSchema } from "validation/companies/companiesFiltersValidationSchema copy";
+import { authedMiddleware } from "@/middleware/authedMiddleware";
+import { queryValidationMiddleware } from "@/middleware/validationMiddleware";
+import { UserRole } from "@/models/users/user";
+import { companiesByItemFilterSchema } from "@/validation/companies/companiesByItemFiltersValidationSchema";
+import { companiesFilterSchema } from "@/validation/companies/companiesFiltersValidationSchema copy";
 
 /**
  * @swagger

@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import type { ICreateSupplyRequest } from "models/items/companyItem/supplies/createSupplyRequest";
-import type { ISuppliesRequestFilters } from "models/items/companyItem/supplies/suppliesFilters";
-import type { IUpdateSupplyRequest } from "models/items/companyItem/supplies/updateSupplyRequest";
-import suppliesService from "services/items/suppliesService";
+import type { ICreateSupplyRequest } from "@/models/items/companyItem/supplies/createSupplyRequest";
+import type { ISuppliesRequestFilters } from "@/models/items/companyItem/supplies/suppliesFilters";
+import type { IUpdateSupplyRequest } from "@/models/items/companyItem/supplies/updateSupplyRequest";
+import suppliesService from "@/services/items/suppliesService";
 
 class SuppliesController {
   public async getSupplies(req: Request, res: Response) {

@@ -1,12 +1,12 @@
-import { initUser } from "migrations/migrations/1__init_user";
-import { updateUser } from "migrations/migrations/2__update_user";
-import { initCompanies } from "migrations/migrations/3__init_companies";
-import { initCompanyUsers } from "migrations/migrations/4__init_company_users";
-import { initTypes } from "migrations/migrations/5__init_item_types";
-import { initItems } from "migrations/migrations/6__init_items";
-import { initCompanyItems } from "migrations/migrations/7__init_company_items";
-import { initSupplies } from "migrations/migrations/8__init_supplies";
-import { addAdditionalCompany } from "migrations/migrations/9__add_additional_company";
+import { initUser } from "@/migrations/migrations/1__init_user";
+import { updateUser } from "@/migrations/migrations/2__update_user";
+import { initCompanies } from "@/migrations/migrations/3__init_companies";
+import { initCompanyUsers } from "@/migrations/migrations/4__init_company_users";
+import { initTypes } from "@/migrations/migrations/5__init_item_types";
+import { initItems } from "@/migrations/migrations/6__init_items";
+import { initCompanyItems } from "@/migrations/migrations/7__init_company_items";
+import { initSupplies } from "@/migrations/migrations/8__init_supplies";
+import { addAdditionalCompany } from "@/migrations/migrations/9__add_additional_company";
 
 interface Migartion {
   id: number;

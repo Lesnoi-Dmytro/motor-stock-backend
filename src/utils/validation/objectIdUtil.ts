@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { stringToArray } from "utils/arrays/stringToArray";
+import { stringToArray } from "@/utils/arrays/stringToArray";
 import { z } from "zod";
 
 export const objectId = z

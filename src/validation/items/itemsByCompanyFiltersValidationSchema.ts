@@ -1,4 +1,4 @@
-import { paginationSchema } from "validation/paginationValidationSchema";
+import { paginationSchema } from "@/validation/paginationValidationSchema";
 import { z } from "zod";
 
 export const itemsByCompanyFilterSchema = paginationSchema.merge(

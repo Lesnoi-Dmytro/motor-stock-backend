@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
-import type { IAuthedRequest } from "models/auth/authedRequest";
-import { UserRole } from "models/users/user";
-import jwtService from "services/auth/jwtService";
+import type { IAuthedRequest } from "@/models/auth/authedRequest";
+import { UserRole } from "@/models/users/user";
+import jwtService from "@/services/auth/jwtService";
 
 export function authedMiddleware(roles?: UserRole[]) {
   return (req: Request, res: Response, next: NextFunction) => {

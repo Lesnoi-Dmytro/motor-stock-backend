@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import type { ICompaniesByItemFiltersRequest } from "models/companies/companiesByItemFilters";
-import type { ICompaniesFiltersRequest } from "models/companies/companiesFilters";
-import companiesService from "services/companies/companiesService";
-import { stringToArray } from "utils/arrays/stringToArray";
+import type { ICompaniesByItemFiltersRequest } from "@/models/companies/companiesByItemFilters";
+import type { ICompaniesFiltersRequest } from "@/models/companies/companiesFilters";
+import companiesService from "@/services/companies/companiesService";
+import { stringToArray } from "@/utils/arrays/stringToArray";
 
 class CompaniesController {
   public async getAllCompanies(req: Request, res: Response) {

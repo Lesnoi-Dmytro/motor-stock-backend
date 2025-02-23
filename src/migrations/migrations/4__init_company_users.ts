@@ -1,8 +1,8 @@
-import { dummyCompanies } from "migrations/migrations/3__init_companies";
-import { UserColors } from "models/users/user";
-import { Company } from "schemas/companies/company";
-import { User } from "schemas/users/user";
-import passwordEncodeService from "services/auth/passwordEncodeService";
+import { dummyCompanies } from "@/migrations/migrations/3__init_companies";
+import { UserColors } from "@/models/users/user";
+import { Company } from "@/schemas/companies/Company";
+import { User } from "@/schemas/users/User";
+import passwordEncodeService from "@/services/auth/passwordEncodeService";
 
 export async function initCompanyUsers() {
   const company = await Company.findOne({

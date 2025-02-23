@@ -1,6 +1,6 @@
-import { basicTypes } from "migrations/migrations/5__init_item_types";
-import { Item } from "schemas/items/item";
-import { Type } from "schemas/items/type";
+import { basicTypes } from "@/migrations/migrations/5__init_item_types";
+import { Item } from "@/schemas/items/Item";
+import { Type } from "@/schemas/items/Type";
 
 export async function initItems() {
   const updatedItems = await Promise.all(

@@ -1,7 +1,7 @@
-import type { ICompanyItem } from "models/items/companyItem/companyItem";
+import type { ICompanyItem } from "@/models/items/companyItem/companyItem";
 import mongoose from "mongoose";
-import { Company } from "schemas/companies/company";
-import { Item } from "schemas/items/item";
+import { Company } from "@/schemas/companies/Company";
+import { Item } from "@/schemas/items/Item";
 
 const companyItemSchema = new mongoose.Schema<ICompanyItem>(
   {

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import type { ItemFiltersRequest } from "models/items/itemFilters";
-import type { ItemsByCompanyFiltersRequest } from "models/items/itemsByCompanyFilters";
-import itemsService from "services/items/itemsService";
+import type { ItemFiltersRequest } from "@/models/items/itemFilters";
+import type { ItemsByCompanyFiltersRequest } from "@/models/items/itemsByCompanyFilters";
+import itemsService from "@/services/items/itemsService";
 
 class ItemsController {
   public async getItems(req: Request, res: Response) {

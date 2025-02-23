@@ -1,4 +1,4 @@
-import type { ICreateItemRequest } from "models/items/itemCreateRequest";
+import type { ICreateItemRequest } from "@/models/items/itemCreateRequest";
 
 export interface ICreateCompanyItemRequest {
   item: ICreateItemRequest;

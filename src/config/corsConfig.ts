@@ -1,4 +1,4 @@
-import { settings } from "config/settings";
+import { settings } from "@/config/settings";
 import cors, { type CorsOptions } from "cors";
 
 const corsOptions: CorsOptions = {

@@ -1,4 +1,4 @@
-import { objectId } from "utils/validation/objectIdUtil";
+import { objectId } from "@/utils/validation/objectIdUtil";
 import { z } from "zod";
 
 export const createSupplyRequestSchema = z
